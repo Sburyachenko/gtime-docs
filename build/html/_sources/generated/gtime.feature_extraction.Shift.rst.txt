@@ -1,0 +1,18 @@
+:mod:`gtime.feature_extraction`.Shift
+============================================
+
+.. currentmodule:: gtime.feature_extraction
+
+.. autoclass:: Shift
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.feature_extraction.Shift.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

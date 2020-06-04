@@ -1,0 +1,18 @@
+:mod:`gtime.causality`.ShiftedPearsonCorrelation
+=======================================================
+
+.. currentmodule:: gtime.causality
+
+.. autoclass:: ShiftedPearsonCorrelation
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.causality.ShiftedPearsonCorrelation.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

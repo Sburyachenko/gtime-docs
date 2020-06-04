@@ -1,0 +1,14 @@
+:mod:`gtime.metrics`.smape
+=======================================
+
+.. currentmodule:: gtime.metrics
+
+.. autofunction:: smape
+
+..
+    Exclude sphinx-gallery generated examples since we use binder for now
+    include:: gtime.metrics.smape.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

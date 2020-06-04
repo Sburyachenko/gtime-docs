@@ -1,0 +1,18 @@
+:mod:`gtime.regressors`.LinearRegressor
+==============================================
+
+.. currentmodule:: gtime.regressors
+
+.. autoclass:: LinearRegressor
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.regressors.LinearRegressor.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

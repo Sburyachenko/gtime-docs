@@ -1,0 +1,312 @@
+Simple models
+=============
+
+This example demonstrates how giotto-time can be used for simple
+prediction pipelines
+
+Initializing the time series
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: ipython3
+
+    import sys
+    sys.path.append('../')
+
+.. code:: ipython3
+
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline  
+    
+    from gtime.preprocessing import TimeSeriesPreparation
+    from gtime.compose import FeatureCreation
+    from gtime.time_series_models import (
+        Naive, 
+        SeasonalNaive, 
+        Average, 
+        Drift,
+    )
+
+.. code:: ipython3
+
+    def pred_to_plot(y_pred):
+        start = y_pred.index.min()
+        len_y = len(y_pred.columns)
+        window = len_y * pd.Timedelta(y_pred.index.freq)
+        end=y_pred.index.max() + window
+        ix = pd.period_range(start=start, end=end)
+        res = pd.DataFrame(np.nan, index=ix, columns=y_pred.index)
+        j = 1
+        for i, row in y_pred.iterrows():
+            res.loc[i+pd.Timedelta(y_pred.index.freq):i+window, i] = row.values
+            j += 1
+        return res
+
+.. code:: ipython3
+
+    df_sp = pd.read_csv('https://storage.googleapis.com/l2f-open-models/giotto-time/examples/data/^GSPC.csv')
+    df_sp.head()
+
+
+
+
+.. raw:: html
+
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>Date</th>
+          <th>Open</th>
+          <th>High</th>
+          <th>Low</th>
+          <th>Close</th>
+          <th>Adj Close</th>
+          <th>Volume</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>0</th>
+          <td>2015-03-18</td>
+          <td>2072.840088</td>
+          <td>2106.850098</td>
+          <td>2061.229980</td>
+          <td>2099.500000</td>
+          <td>2099.500000</td>
+          <td>4128210000</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>2015-03-19</td>
+          <td>2098.689941</td>
+          <td>2098.689941</td>
+          <td>2085.560059</td>
+          <td>2089.270020</td>
+          <td>2089.270020</td>
+          <td>3305220000</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>2015-03-20</td>
+          <td>2090.320068</td>
+          <td>2113.919922</td>
+          <td>2090.320068</td>
+          <td>2108.100098</td>
+          <td>2108.100098</td>
+          <td>5554120000</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>2015-03-23</td>
+          <td>2107.989990</td>
+          <td>2114.860107</td>
+          <td>2104.419922</td>
+          <td>2104.419922</td>
+          <td>2104.419922</td>
+          <td>3267960000</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>2015-03-24</td>
+          <td>2103.939941</td>
+          <td>2107.629883</td>
+          <td>2091.500000</td>
+          <td>2091.500000</td>
+          <td>2091.500000</td>
+          <td>3189820000</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+
+.. code:: ipython3
+
+    df_close = df_sp.set_index('Date')['Close']
+
+.. code:: ipython3
+
+    df_close.index = pd.to_datetime(df_close.index)
+
+Time Series Preparation
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The input time series has to be a ``DataFrame`` with a ``PeriodIndex``.
+Use the provided class ``TimeSeriesPreparation`` to convert the time
+series into this format.
+
+.. code:: ipython3
+
+    time_series_preparation = TimeSeriesPreparation()
+    period_index_time_series = time_series_preparation.transform(df_close)
+    period_index_time_series.plot(figsize=(20, 5))
+    plt.show()
+
+
+
+.. image:: simple_models_files/simple_models_9_0.png
+
+
+Naïve model
+~~~~~~~~~~~
+
+.. code:: ipython3
+
+    model = Naive(horizon=60)
+    model.fit(period_index_time_series)
+
+
+
+
+.. parsed-literal::
+
+    Naive(horizon=60)
+
+
+
+.. code:: ipython3
+
+    y_pred = model.predict()
+    y_plot = pred_to_plot(y_pred)
+    for i in y_plot.columns:
+        y_plot.loc[i, i] = period_index_time_series.loc[i].values
+
+.. code:: ipython3
+
+    ax = period_index_time_series.loc['2019-09-01':].plot(figsize=(20, 5))
+    y_plot.iloc[:, [0, 19, 39, 59]].plot(ax=ax)
+    plt.show()
+
+
+
+.. image:: simple_models_files/simple_models_13_0.png
+
+
+Seasonal naïve model
+~~~~~~~~~~~~~~~~~~~~
+
+.. code:: ipython3
+
+    model = SeasonalNaive(horizon=60, seasonal_length=30)
+    model.fit(period_index_time_series)
+
+
+.. parsed-literal::
+
+    /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/sklearn/base.py:197: FutureWarning: From version 0.24, get_params will raise an AttributeError if a parameter cannot be retrieved as an instance attribute. Previously it would return None.
+      FutureWarning)
+
+
+
+
+.. parsed-literal::
+
+    SeasonalNaive(horizon=60, seasonal_length=None)
+
+
+
+.. code:: ipython3
+
+    y_pred = model.predict()
+    y_plot = pred_to_plot(y_pred)
+    for i in y_plot.columns:
+        y_plot.loc[i, i] = period_index_time_series.loc[i].values
+
+.. code:: ipython3
+
+    ax = period_index_time_series.loc['2019-09-01':].plot(figsize=(20, 5))
+    y_plot.iloc[:, [0, 19, 39, 59]].plot(ax=ax)
+    plt.show()
+
+
+
+.. image:: simple_models_files/simple_models_17_0.png
+
+
+Average model
+~~~~~~~~~~~~~
+
+.. code:: ipython3
+
+    model = Average(horizon=60)
+    model.fit(period_index_time_series)
+
+
+
+
+.. parsed-literal::
+
+    Average(horizon=60)
+
+
+
+.. code:: ipython3
+
+    y_pred = model.predict()
+    y_plot = pred_to_plot(y_pred)
+    for i in y_plot.columns:
+        y_plot.loc[i, i] = period_index_time_series.loc[i].values
+
+.. code:: ipython3
+
+    ax = period_index_time_series.loc['2019-09-01':].plot(figsize=(20, 5))
+    y_plot.iloc[:, [0, 19, 39, 59]].plot(ax=ax)
+    plt.show()
+
+
+
+.. image:: simple_models_files/simple_models_21_0.png
+
+
+Drift model
+~~~~~~~~~~~
+
+.. code:: ipython3
+
+    model = Drift(horizon=60)
+    model.fit(period_index_time_series)
+
+
+
+
+.. parsed-literal::
+
+    Drift(horizon=60)
+
+
+
+.. code:: ipython3
+
+    y_pred = model.predict()
+    y_plot = pred_to_plot(y_pred)
+    for i in y_plot.columns:
+        y_plot.loc[i, i] = period_index_time_series.loc[i].values
+
+.. code:: ipython3
+
+    ax = period_index_time_series.loc['2019-09-01':].plot(figsize=(20, 5))
+    y_plot.iloc[:, [0, 19, 39, 59]].plot(ax=ax)
+    plt.show()
+
+
+
+.. image:: simple_models_files/simple_models_25_0.png
+
+

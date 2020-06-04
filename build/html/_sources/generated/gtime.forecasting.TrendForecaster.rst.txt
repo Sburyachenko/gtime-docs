@@ -1,0 +1,18 @@
+:mod:`gtime.forecasting`.TrendForecaster
+===============================================
+
+.. currentmodule:: gtime.forecasting
+
+.. autoclass:: TrendForecaster
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.forecasting.TrendForecaster.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

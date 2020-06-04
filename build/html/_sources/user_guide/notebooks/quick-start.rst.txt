@@ -1,0 +1,659 @@
+Giotto-Time
+===========
+
+Welcome to ``giotto-time``, a Python library for time series
+forecasting!
+
+Let's start with an example.
+
+First example
+-------------
+
+Ingredients
+~~~~~~~~~~~
+
+These are the main ingredients of ``giotto-time``:
+
+.. code:: ipython3
+
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    
+    from gtime.preprocessing import TimeSeriesPreparation
+    from gtime.compose import FeatureCreation
+    from gtime.feature_extraction import Shift, MovingAverage
+    from gtime.feature_generation import PeriodicSeasonal, Constant, Calendar
+    from gtime.model_selection import horizon_shift, FeatureSplitter
+    from gtime.forecasting import GAR
+
+-  ``TimeSeriesPreparation``: checks the input format of the time series
+   and converts it to the expected format
+-  ``FeatureCreation``: scikit-learn's ``ColumnTransformer`` wrapper
+   that returns DataFrame
+-  ``Shift``, ``MovingAverage``: create the desired features on the time
+   series for the forecasting
+-  ``FeatureSplitter``: prepares the custom ``giotto-time`` train-test
+   matrices that are used in the model
+-  ``GAR``: Generalized Auto Regressive model, scikit-learn's
+   ``MultiOutputRegressor`` wrapper. This is the only time series
+   forecasting model available for the first release
+
+We also need a scikit-learn regression model. We go for a standard
+``LinearRegression`` for this example.
+
+.. code:: ipython3
+
+    from sklearn.linear_model import LinearRegression
+
+Data
+~~~~
+
+We use the ``pandas.testing`` module to create a testing time series
+
+.. code:: ipython3
+
+    def test_time_series():
+        from pandas.util import testing as testing
+    
+        testing.N, testing.K = 500, 1
+        df = testing.makeTimeDataFrame( freq="D" )
+        return df
+
+.. code:: ipython3
+
+    time_series = test_time_series()
+    print(f'Time series shape: {time_series.shape}')
+    print(f'Time series index type: {time_series.index.__class__}')
+
+
+.. parsed-literal::
+
+    Time series shape: (30, 4)
+    Time series index type: <class 'pandas.core.indexes.datetimes.DatetimeIndex'>
+
+
+.. parsed-literal::
+
+    /Users/stefano/anaconda3/envs/giotto-time/lib/python3.7/site-packages/pandas/util/__init__.py:12: FutureWarning: pandas.util.testing is deprecated. Use the functions in the public API at pandas.testing instead.
+      import pandas.util.testing
+
+
+Time Series Preparation
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The input time series has to be a ``DataFrame`` with a ``PeriodIndex``.
+Use the provided class ``TimeSeriesPreparation`` to convert the time
+series into this format.
+
+.. code:: ipython3
+
+    time_series_preparation = TimeSeriesPreparation()
+
+.. code:: ipython3
+
+    period_index_time_series = time_series_preparation.transform(time_series)
+
+.. code:: ipython3
+
+    print(f'Time series index type after the preprocessing: {period_index_time_series.index.__class__}')
+
+
+.. parsed-literal::
+
+    Time series index type after the preprocessing: <class 'pandas.core.indexes.period.PeriodIndex'>
+
+
+.. code:: ipython3
+
+    period_index_time_series.plot(figsize=(20, 5))
+    plt.show()
+
+
+
+.. image:: quick-start_files/quick-start_17_0.png
+
+
+Feature extraction
+~~~~~~~~~~~~~~~~~~
+
+The feature extraction part is aimed at providing a scikit-learn
+paradigm with a time-series forecasting perspective Our
+``DataFrameTransformer`` inherits from scikit-learn's
+``ColumnTransformer``, it will create a feature DataFrame with the
+provided Transformers.
+
+For simplicity we will create only ``Shift`` and ``MovingAverage``
+features.
+
+``Shift`` provides a temporal shift of the time series. Adding two
+``Shift`` features (by 0 and 1) is equivalent to an ``AR(2)`` model.
+
+Since the ``DataFrameTransformer`` is a ``ColumnTransformer`` wrapper,
+you can easily include features from ``scikit-learn``, ``tsfresh``,
+topological features from ``giotto-tda`` (:raw-latex:`\o`/) or your own
+custom features.
+
+.. code:: ipython3
+
+    cal = Calendar(
+        start_date="ignored",
+        end_date="ignored",
+        region="america",
+        country="Brazil",
+        kernel=np.array([0, 1]),
+    )
+    # New API 
+    dft = FeatureCreation(
+        [('s0', Shift(0), ['time_series']), 
+         ('s1', Shift(1), ['time_series']),
+         ('ma3', MovingAverage(window_size=3), ['time_series']),
+         # ('cal', cal, ['time_series']),
+         # ('ct', Constant(2), ['time_series']),
+        ])
+
+.. code:: ipython3
+
+    X = dft.fit_transform(period_index_time_series)
+    X.head(6)
+
+
+
+
+.. raw:: html
+
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>s0__time_series__Shift</th>
+          <th>s1__time_series__Shift</th>
+          <th>ma3__time_series__MovingAverage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>2000-01-01</th>
+          <td>0.645392</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>2000-01-02</th>
+          <td>-0.827492</td>
+          <td>0.645392</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>2000-01-03</th>
+          <td>0.739830</td>
+          <td>-0.827492</td>
+          <td>0.185910</td>
+        </tr>
+        <tr>
+          <th>2000-01-04</th>
+          <td>1.620371</td>
+          <td>0.739830</td>
+          <td>0.510903</td>
+        </tr>
+        <tr>
+          <th>2000-01-05</th>
+          <td>-1.655263</td>
+          <td>1.620371</td>
+          <td>0.234979</td>
+        </tr>
+        <tr>
+          <th>2000-01-06</th>
+          <td>-0.377386</td>
+          <td>-1.655263</td>
+          <td>-0.137426</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+
+.. code:: ipython3
+
+    y = horizon_shift(period_index_time_series, horizon=3)
+    y.head()
+
+
+
+
+.. raw:: html
+
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>y_1</th>
+          <th>y_2</th>
+          <th>y_3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>2000-01-01</th>
+          <td>-0.827492</td>
+          <td>0.739830</td>
+          <td>1.620371</td>
+        </tr>
+        <tr>
+          <th>2000-01-02</th>
+          <td>0.739830</td>
+          <td>1.620371</td>
+          <td>-1.655263</td>
+        </tr>
+        <tr>
+          <th>2000-01-03</th>
+          <td>1.620371</td>
+          <td>-1.655263</td>
+          <td>-0.377386</td>
+        </tr>
+        <tr>
+          <th>2000-01-04</th>
+          <td>-1.655263</td>
+          <td>-0.377386</td>
+          <td>0.265815</td>
+        </tr>
+        <tr>
+          <th>2000-01-05</th>
+          <td>-0.377386</td>
+          <td>0.265815</td>
+          <td>-0.382270</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+
+Train-Test split
+~~~~~~~~~~~~~~~~
+
+We use ``FeatureSplitter`` to split the matrices X and y in train and
+test.
+
+.. code:: ipython3
+
+    feature_splitter = FeatureSplitter()
+
+.. code:: ipython3
+
+    X_train, y_train, X_test, y_test = feature_splitter.transform(X, y)
+
+.. code:: ipython3
+
+    X_train.tail()
+
+
+
+
+.. raw:: html
+
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>s0__time_series__Shift</th>
+          <th>s1__time_series__Shift</th>
+          <th>ma3__time_series__MovingAverage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>2000-01-23</th>
+          <td>-1.080190</td>
+          <td>-2.039976</td>
+          <td>-1.083886</td>
+        </tr>
+        <tr>
+          <th>2000-01-24</th>
+          <td>0.298441</td>
+          <td>-1.080190</td>
+          <td>-0.940575</td>
+        </tr>
+        <tr>
+          <th>2000-01-25</th>
+          <td>0.231146</td>
+          <td>0.298441</td>
+          <td>-0.183534</td>
+        </tr>
+        <tr>
+          <th>2000-01-26</th>
+          <td>-1.051813</td>
+          <td>0.231146</td>
+          <td>-0.174076</td>
+        </tr>
+        <tr>
+          <th>2000-01-27</th>
+          <td>1.120227</td>
+          <td>-1.051813</td>
+          <td>0.099853</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+
+.. code:: ipython3
+
+    X_test
+
+
+
+
+.. raw:: html
+
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>s0__time_series__Shift</th>
+          <th>s1__time_series__Shift</th>
+          <th>ma3__time_series__MovingAverage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>2000-01-28</th>
+          <td>-1.947150</td>
+          <td>1.120227</td>
+          <td>-0.626245</td>
+        </tr>
+        <tr>
+          <th>2000-01-29</th>
+          <td>0.388478</td>
+          <td>-1.947150</td>
+          <td>-0.146148</td>
+        </tr>
+        <tr>
+          <th>2000-01-30</th>
+          <td>2.421464</td>
+          <td>0.388478</td>
+          <td>0.287597</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+
+.. code:: ipython3
+
+    y_train.tail()
+
+
+
+
+.. raw:: html
+
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>y_1</th>
+          <th>y_2</th>
+          <th>y_3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>2000-01-23</th>
+          <td>0.298441</td>
+          <td>0.231146</td>
+          <td>-1.051813</td>
+        </tr>
+        <tr>
+          <th>2000-01-24</th>
+          <td>0.231146</td>
+          <td>-1.051813</td>
+          <td>1.120227</td>
+        </tr>
+        <tr>
+          <th>2000-01-25</th>
+          <td>-1.051813</td>
+          <td>1.120227</td>
+          <td>-1.947150</td>
+        </tr>
+        <tr>
+          <th>2000-01-26</th>
+          <td>1.120227</td>
+          <td>-1.947150</td>
+          <td>0.388478</td>
+        </tr>
+        <tr>
+          <th>2000-01-27</th>
+          <td>-1.947150</td>
+          <td>0.388478</td>
+          <td>2.421464</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+
+.. code:: ipython3
+
+    y_test
+
+
+
+
+.. raw:: html
+
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>y_1</th>
+          <th>y_2</th>
+          <th>y_3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>2000-01-28</th>
+          <td>0.388478</td>
+          <td>2.421464</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>2000-01-29</th>
+          <td>2.421464</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>2000-01-30</th>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+
+Training
+~~~~~~~~
+
+We rewrapped scikit-learn's ``MultiOutputRegressor`` as ``GAR``
+(Generalized Auto Regressive) model to better fit time series
+forecasting frameworks.
+
+The traditional *AR* model is equivalent to the ``GAR`` model that uses
+only ``Shift`` columns in the ``X`` matrix. ``GAR`` supports all the
+features compatible with the feature extraction step.
+
+*AR*: https://en.wikipedia.org/wiki/Autoregressive\_model
+
+.. code:: ipython3
+
+    lr = LinearRegression()
+    model = GAR(lr)
+
+.. code:: ipython3
+
+    model = model.fit(X_train, y_train)
+
+Forecasting
+~~~~~~~~~~~
+
+We forecast 3 time steps of the time series (we set this parameter in
+``horizon_shift`` method).
+
+The format of the output is the following: - the index is the step at
+which the prediction is made. - the column ``y_1`` is the prediction one
+time step after and so on for ``y_2`` and ``y_3``
+
+.. code:: ipython3
+
+    predictions = model.predict(X_test)
+
+.. code:: ipython3
+
+    predictions
+
+
+
+
+.. raw:: html
+
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>y_1</th>
+          <th>y_2</th>
+          <th>y_3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>2000-01-28</th>
+          <td>-0.674776</td>
+          <td>-0.173466</td>
+          <td>0.083238</td>
+        </tr>
+        <tr>
+          <th>2000-01-29</th>
+          <td>0.576842</td>
+          <td>0.050310</td>
+          <td>-0.250337</td>
+        </tr>
+        <tr>
+          <th>2000-01-30</th>
+          <td>-0.291352</td>
+          <td>-0.738095</td>
+          <td>0.279996</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+

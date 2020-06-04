@@ -1,0 +1,14 @@
+:mod:`gtime.model_selection`.horizon_shift
+=======================================================
+
+.. currentmodule:: gtime.model_selection
+
+.. autofunction:: horizon_shift
+
+..
+    Exclude sphinx-gallery generated examples since we use binder for now
+    include:: gtime.model_selection.horizon_shift.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

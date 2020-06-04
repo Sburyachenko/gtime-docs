@@ -1,0 +1,18 @@
+:mod:`gtime.model_selection`.FeatureSplitter
+===================================================
+
+.. currentmodule:: gtime.model_selection
+
+.. autoclass:: FeatureSplitter
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.model_selection.FeatureSplitter.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>
