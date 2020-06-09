@@ -1,0 +1,7 @@
+######################
+Advanced recepies
+######################
+
+
+.. toctree::
+   :maxdepth: 1

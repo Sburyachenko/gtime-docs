@@ -1,0 +1,28 @@
+===============
+Theory Glossary
+===============
+
+.. contents::
+   :depth: 3
+..
+
+Symbols
+=======
+
+Naïve model
+===========
+
+Causality
+=========
+
+Explainability
+==============
+
+Generalized linear models
+=========================
+
+Hierarchical models
+===================
+
+Bibliography
+============

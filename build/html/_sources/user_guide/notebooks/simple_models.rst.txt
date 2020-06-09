@@ -1,8 +1,8 @@
-Simple models
-=============
+Naïve models
+============
 
 This example demonstrates how giotto-time can be used for simple
-prediction pipelines
+prediction pipelines:
 
 Initializing the time series
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -27,6 +27,25 @@ Initializing the time series
         Average, 
         Drift,
     )
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    ModuleNotFoundError                       Traceback (most recent call last)
+
+    <ipython-input-1-84dc5f1f41c5> in <module>
+          4 get_ipython().run_line_magic('matplotlib', 'inline  ')
+          5 
+    ----> 6 from gtime.preprocessing import TimeSeriesPreparation
+          7 from gtime.compose import FeatureCreation
+          8 from gtime.time_series_models import (
+
+
+    ModuleNotFoundError: No module named 'gtime'
+
 
 .. code:: ipython3
 
@@ -205,21 +224,22 @@ Seasonal naïve model
 .. code:: ipython3
 
     model = SeasonalNaive(horizon=60, seasonal_length=30)
-    model.fit(period_index_time_series)
+    model.fit(period_index_time_series);
 
 
-.. parsed-literal::
-
-    /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/sklearn/base.py:197: FutureWarning: From version 0.24, get_params will raise an AttributeError if a parameter cannot be retrieved as an instance attribute. Previously it would return None.
-      FutureWarning)
+::
 
 
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-2-f873166d6a3f> in <module>
+    ----> 1 model = SeasonalNaive(horizon=60, seasonal_length=30)
+          2 model.fit(period_index_time_series);
 
 
-.. parsed-literal::
-
-    SeasonalNaive(horizon=60, seasonal_length=None)
-
+    NameError: name 'SeasonalNaive' is not defined
 
 
 .. code:: ipython3
@@ -308,5 +328,4 @@ Drift model
 
 
 .. image:: simple_models_files/simple_models_25_0.png
-
 

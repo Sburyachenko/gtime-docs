@@ -25,6 +25,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -115,22 +116,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="user_guide/user_guide.html">User guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/notebooks/plotting_example.html">Data analysis with giotto-time plotting tools</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/plotting_example.html#imports-and-setups">Imports and setups</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/plotting_example.html#data-setup">Data setup</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/plotting_example.html#loading-data">Loading data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/plotting_example.html#converting-to-a-giotto-time-series">Converting to a Giotto time series</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/plotting_example.html#exploratory-data-analysis">Exploratory data analysis</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/plotting_example.html#seasonality">Seasonality</a></li>
-<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/plotting_example.html#autocorrelation">Autocorrelation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/notebooks/quick-start.html">Giotto-Time</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/quick-start.html#first-example">First example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/basic.html">Basic examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/quick-start.html">Quick start</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/quick-start.html#ingredients">Ingredients</a></li>
 <li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/quick-start.html#data">Data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/quick-start.html#time-series-preparation">Time Series Preparation</a></li>
@@ -140,15 +127,24 @@
 <li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/quick-start.html#forecasting">Forecasting</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/simple_models.html">Naïve models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/simple_models.html#initializing-the-time-series">Initializing the time series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/simple_models.html#time-series-preparation">Time Series Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/simple_models.html#naive-model">Naïve model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/simple_models.html#seasonal-naive-model">Seasonal naïve model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/simple_models.html#average-model">Average model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/simple_models.html#drift-model">Drift model</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/notebooks/simple_models.html">Simple models</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/simple_models.html#initializing-the-time-series">Initializing the time series</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/simple_models.html#time-series-preparation">Time Series Preparation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/simple_models.html#naive-model">Naïve model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/simple_models.html#seasonal-naive-model">Seasonal naïve model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/simple_models.html#average-model">Average model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/simple_models.html#drift-model">Drift model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/plotting_example.html">Data analysis with giotto-time plotting tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/plotting_example.html#imports-and-setups">Imports and setups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/plotting_example.html#data-setup">Data setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/plotting_example.html#exploratory-data-analysis">Exploratory data analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/advanced.html">Advanced recepies</a><ul class="simple">
 </ul>
 </li>
 </ul>
@@ -202,6 +198,16 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.preprocessing.TimeSeriesPreparation.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.preprocessing</span></code>.TimeSeriesPreparation</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="theory/math.html">Theory Glossary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="theory/math.html#symbols">Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory/math.html#naive-model">Naïve model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory/math.html#causality">Causality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory/math.html#explainability">Explainability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory/math.html#generalized-linear-models">Generalized linear models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory/math.html#hierarchical-models">Hierarchical models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory/math.html#bibliography">Bibliography</a></li>
 </ul>
 </li>
 </ul>
@@ -280,6 +286,7 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_guide/user_guide.html">User guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/math.html">Theory Glossary</a></li>
 </ul>
 </div>
 </div>

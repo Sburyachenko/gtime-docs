@@ -1,13 +1,10 @@
-Giotto-Time
+Quick start
 ===========
 
 Welcome to ``giotto-time``, a Python library for time series
 forecasting!
 
 Let's start with an example.
-
-First example
--------------
 
 Ingredients
 ~~~~~~~~~~~
@@ -111,7 +108,7 @@ series into this format.
 
 
 
-.. image:: quick-start_files/quick-start_17_0.png
+.. image:: quick-start_files/quick-start_16_0.png
 
 
 Feature extraction
@@ -654,6 +651,5 @@ time step after and so on for ``y_2`` and ``y_3``
       </tbody>
     </table>
     </div>
-
 
 
