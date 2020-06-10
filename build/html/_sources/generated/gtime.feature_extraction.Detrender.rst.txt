@@ -1,0 +1,18 @@
+:mod:`gtime.feature_extraction`.Detrender
+================================================
+
+.. currentmodule:: gtime.feature_extraction
+
+.. autoclass:: Detrender
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.feature_extraction.Detrender.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

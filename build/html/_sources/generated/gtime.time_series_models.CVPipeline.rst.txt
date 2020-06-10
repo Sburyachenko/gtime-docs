@@ -1,0 +1,18 @@
+:mod:`gtime.time_series_models`.CVPipeline
+=================================================
+
+.. currentmodule:: gtime.time_series_models
+
+.. autoclass:: CVPipeline
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.time_series_models.CVPipeline.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

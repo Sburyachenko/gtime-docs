@@ -1,0 +1,14 @@
+:mod:`gtime.plotting`.seasonal_plot
+================================================
+
+.. currentmodule:: gtime.plotting
+
+.. autofunction:: seasonal_plot
+
+..
+    Exclude sphinx-gallery generated examples since we use binder for now
+    include:: gtime.plotting.seasonal_plot.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

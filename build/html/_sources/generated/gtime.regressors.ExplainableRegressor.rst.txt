@@ -1,0 +1,18 @@
+:mod:`gtime.regressors`.ExplainableRegressor
+===================================================
+
+.. currentmodule:: gtime.regressors
+
+.. autoclass:: ExplainableRegressor
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.regressors.ExplainableRegressor.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

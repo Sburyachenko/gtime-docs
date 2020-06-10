@@ -1,0 +1,18 @@
+:mod:`gtime.regressors`.MultiFeatureMultiOutputRegressor
+===============================================================
+
+.. currentmodule:: gtime.regressors
+
+.. autoclass:: MultiFeatureMultiOutputRegressor
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.regressors.MultiFeatureMultiOutputRegressor.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

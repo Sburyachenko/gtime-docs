@@ -1,0 +1,18 @@
+:mod:`gtime.forecasting`.MultiFeatureGAR
+===============================================
+
+.. currentmodule:: gtime.forecasting
+
+.. autoclass:: MultiFeatureGAR
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.forecasting.MultiFeatureGAR.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

@@ -26,7 +26,6 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -144,7 +143,17 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/advanced.html">Advanced recepies</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="user_guide/advanced.html">Advanced recepies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/energy_demand_time_series.html">Energy Demand Prediction in Switzerland</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/energy_demand_time_series.html#library-imports">Library Imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/energy_demand_time_series.html#import-data-and-preprocessing">Import Data and Preprocessing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/energy_demand_time_series.html#detrending-and-seasonality">Detrending and Seasonality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/energy_demand_time_series.html#causality-testing">Causality testing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/energy_demand_time_series.html#feature-creation">Feature Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/energy_demand_time_series.html#prediction">Prediction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/energy_demand_time_series.html#comparison-of-different-models">Comparison of different models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -153,6 +162,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-gtime.causality">Causality Tests</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.causality.ShiftedLinearCoefficient.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.causality</span></code>.ShiftedLinearCoefficient</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.causality.ShiftedPearsonCorrelation.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.causality</span></code>.ShiftedPearsonCorrelation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.causality.GrangerCausality.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.causality</span></code>.GrangerCausality</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-gtime.compose">Compose</a><ul>
@@ -166,6 +176,9 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.feature_extraction.Polynomial.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Polynomial</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.feature_extraction.Exogenous.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Exogenous</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.feature_extraction.CustomFeature.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.CustomFeature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.feature_extraction.Detrender.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Detrender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.feature_extraction.SortedDensity.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.SortedDensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.feature_extraction.CrestFactorDetrending.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.CrestFactorDetrending</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-gtime.feature_generation">Feature Generation</a><ul>
@@ -177,25 +190,70 @@
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-gtime.forecasting">Forecasting</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.forecasting.GAR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.GAR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.forecasting.GARFF.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.GARFF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.forecasting.MultiFeatureGAR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.MultiFeatureGAR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.forecasting.TrendForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.TrendForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.forecasting.HedgeForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.HedgeForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.forecasting.NaiveForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.NaiveForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.forecasting.SeasonalNaiveForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.SeasonalNaiveForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.forecasting.DriftForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.DriftForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.forecasting.AverageForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.AverageForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.forecasting.MultiFeatureMultiOutputRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.MultiFeatureMultiOutputRegressor</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-gtime.regressors">Regressors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/gtime.regressors.LinearRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.regressors</span></code>.LinearRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-gtime.hierarchical">Hierarchical</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.hierarchical.HierarchicalBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.hierarchical.HierarchicalNaive.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalNaive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.hierarchical.HierarchicalBottomUp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalBottomUp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.hierarchical.HierarchicalTopDown.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalTopDown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.hierarchical.HierarchicalMiddleOut.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalMiddleOut</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-gtime.metrics">Metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.metrics.non_zero_smape.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.non_zero_smape</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.metrics.smape.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.smape</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.metrics.max_error.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.max_error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.metrics.mse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.mse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.metrics.log_mse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.log_mse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.metrics.r_square.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.r_square</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.metrics.mae.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.mae</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.metrics.mape.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.mape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.metrics.rmse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.rmse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.metrics.rmsle.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.rmsle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.metrics.gmae.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.gmae</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-gtime.model_selection">Model Selection</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.model_selection.FeatureSplitter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.FeatureSplitter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.model_selection.horizon_shift.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.horizon_shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.model_selection.time_series_split.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.time_series_split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.model_selection.blocking_time_series_split.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.blocking_time_series_split</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-gtime.plotting">Plotting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.plotting.seasonal_plot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.seasonal_plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.plotting.seasonal_subplots.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.seasonal_subplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.plotting.acf_plot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.acf_plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.plotting.lag_plot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.lag_plot</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-gtime.preprocessing">Preprocessing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/gtime.preprocessing.TimeSeriesPreparation.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.preprocessing</span></code>.TimeSeriesPreparation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-gtime.regressors">Regressors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.regressors.LinearRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.regressors</span></code>.LinearRegressor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.regressors.MultiFeatureMultiOutputRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.regressors</span></code>.MultiFeatureMultiOutputRegressor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.regressors.ExplainableRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.regressors</span></code>.ExplainableRegressor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-gtime.time_series_models">Time series models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.time_series_models.TimeSeriesForecastingModel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.TimeSeriesForecastingModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.time_series_models.AR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.AR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.time_series_models.Naive.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.Naive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.time_series_models.SeasonalNaive.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.SeasonalNaive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.time_series_models.Average.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.Average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.time_series_models.Drift.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.Drift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/gtime.time_series_models.CVPipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.CVPipeline</a></li>
 </ul>
 </li>
 </ul>
@@ -277,14 +335,19 @@
 
 <div class="genindex-jumpbox">
  <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
  | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  
@@ -292,14 +355,20 @@
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/gtime.causality.ShiftedLinearCoefficient.html#gtime.causality.ShiftedLinearCoefficient.__init__">__init__() (gtime.causality.ShiftedLinearCoefficient method)</a>
+      <li><a href="generated/gtime.causality.GrangerCausality.html#gtime.causality.GrangerCausality.__init__">__init__() (gtime.causality.GrangerCausality method)</a>
 
       <ul>
+        <li><a href="generated/gtime.causality.ShiftedLinearCoefficient.html#gtime.causality.ShiftedLinearCoefficient.__init__">(gtime.causality.ShiftedLinearCoefficient method)</a>
+</li>
         <li><a href="generated/gtime.causality.ShiftedPearsonCorrelation.html#gtime.causality.ShiftedPearsonCorrelation.__init__">(gtime.causality.ShiftedPearsonCorrelation method)</a>
 </li>
         <li><a href="generated/gtime.compose.FeatureCreation.html#gtime.compose.FeatureCreation.__init__">(gtime.compose.FeatureCreation method)</a>
 </li>
+        <li><a href="generated/gtime.feature_extraction.CrestFactorDetrending.html#gtime.feature_extraction.CrestFactorDetrending.__init__">(gtime.feature_extraction.CrestFactorDetrending method)</a>
+</li>
         <li><a href="generated/gtime.feature_extraction.CustomFeature.html#gtime.feature_extraction.CustomFeature.__init__">(gtime.feature_extraction.CustomFeature method)</a>
+</li>
+        <li><a href="generated/gtime.feature_extraction.Detrender.html#gtime.feature_extraction.Detrender.__init__">(gtime.feature_extraction.Detrender method)</a>
 </li>
         <li><a href="generated/gtime.feature_extraction.Exogenous.html#gtime.feature_extraction.Exogenous.__init__">(gtime.feature_extraction.Exogenous method)</a>
 </li>
@@ -311,25 +380,93 @@
 </li>
         <li><a href="generated/gtime.feature_extraction.Shift.html#gtime.feature_extraction.Shift.__init__">(gtime.feature_extraction.Shift method)</a>
 </li>
+        <li><a href="generated/gtime.feature_extraction.SortedDensity.html#gtime.feature_extraction.SortedDensity.__init__">(gtime.feature_extraction.SortedDensity method)</a>
+</li>
         <li><a href="generated/gtime.feature_generation.Calendar.html#gtime.feature_generation.Calendar.__init__">(gtime.feature_generation.Calendar method)</a>
 </li>
         <li><a href="generated/gtime.feature_generation.Constant.html#gtime.feature_generation.Constant.__init__">(gtime.feature_generation.Constant method)</a>
 </li>
         <li><a href="generated/gtime.feature_generation.PeriodicSeasonal.html#gtime.feature_generation.PeriodicSeasonal.__init__">(gtime.feature_generation.PeriodicSeasonal method)</a>
 </li>
+        <li><a href="generated/gtime.forecasting.AverageForecaster.html#gtime.forecasting.AverageForecaster.__init__">(gtime.forecasting.AverageForecaster method)</a>
+</li>
+        <li><a href="generated/gtime.forecasting.DriftForecaster.html#gtime.forecasting.DriftForecaster.__init__">(gtime.forecasting.DriftForecaster method)</a>
+</li>
         <li><a href="generated/gtime.forecasting.GAR.html#gtime.forecasting.GAR.__init__">(gtime.forecasting.GAR method)</a>
 </li>
         <li><a href="generated/gtime.forecasting.GARFF.html#gtime.forecasting.GARFF.__init__">(gtime.forecasting.GARFF method)</a>
 </li>
+        <li><a href="generated/gtime.forecasting.HedgeForecaster.html#gtime.forecasting.HedgeForecaster.__init__">(gtime.forecasting.HedgeForecaster method)</a>
+</li>
+        <li><a href="generated/gtime.forecasting.MultiFeatureGAR.html#gtime.forecasting.MultiFeatureGAR.__init__">(gtime.forecasting.MultiFeatureGAR method)</a>
+</li>
+        <li><a href="generated/gtime.forecasting.MultiFeatureMultiOutputRegressor.html#gtime.forecasting.MultiFeatureMultiOutputRegressor.__init__">(gtime.forecasting.MultiFeatureMultiOutputRegressor method)</a>
+</li>
+        <li><a href="generated/gtime.forecasting.NaiveForecaster.html#gtime.forecasting.NaiveForecaster.__init__">(gtime.forecasting.NaiveForecaster method)</a>
+</li>
+        <li><a href="generated/gtime.forecasting.SeasonalNaiveForecaster.html#gtime.forecasting.SeasonalNaiveForecaster.__init__">(gtime.forecasting.SeasonalNaiveForecaster method)</a>
+</li>
         <li><a href="generated/gtime.forecasting.TrendForecaster.html#gtime.forecasting.TrendForecaster.__init__">(gtime.forecasting.TrendForecaster method)</a>
+</li>
+        <li><a href="generated/gtime.hierarchical.HierarchicalBase.html#gtime.hierarchical.HierarchicalBase.__init__">(gtime.hierarchical.HierarchicalBase method)</a>
+</li>
+        <li><a href="generated/gtime.hierarchical.HierarchicalBottomUp.html#gtime.hierarchical.HierarchicalBottomUp.__init__">(gtime.hierarchical.HierarchicalBottomUp method)</a>
+</li>
+        <li><a href="generated/gtime.hierarchical.HierarchicalMiddleOut.html#gtime.hierarchical.HierarchicalMiddleOut.__init__">(gtime.hierarchical.HierarchicalMiddleOut method)</a>
+</li>
+        <li><a href="generated/gtime.hierarchical.HierarchicalNaive.html#gtime.hierarchical.HierarchicalNaive.__init__">(gtime.hierarchical.HierarchicalNaive method)</a>
+</li>
+        <li><a href="generated/gtime.hierarchical.HierarchicalTopDown.html#gtime.hierarchical.HierarchicalTopDown.__init__">(gtime.hierarchical.HierarchicalTopDown method)</a>
 </li>
         <li><a href="generated/gtime.model_selection.FeatureSplitter.html#gtime.model_selection.FeatureSplitter.__init__">(gtime.model_selection.FeatureSplitter method)</a>
 </li>
         <li><a href="generated/gtime.preprocessing.TimeSeriesPreparation.html#gtime.preprocessing.TimeSeriesPreparation.__init__">(gtime.preprocessing.TimeSeriesPreparation method)</a>
 </li>
+        <li><a href="generated/gtime.regressors.ExplainableRegressor.html#gtime.regressors.ExplainableRegressor.__init__">(gtime.regressors.ExplainableRegressor method)</a>
+</li>
         <li><a href="generated/gtime.regressors.LinearRegressor.html#gtime.regressors.LinearRegressor.__init__">(gtime.regressors.LinearRegressor method)</a>
 </li>
+        <li><a href="generated/gtime.regressors.MultiFeatureMultiOutputRegressor.html#gtime.regressors.MultiFeatureMultiOutputRegressor.__init__">(gtime.regressors.MultiFeatureMultiOutputRegressor method)</a>
+</li>
+        <li><a href="generated/gtime.time_series_models.AR.html#gtime.time_series_models.AR.__init__">(gtime.time_series_models.AR method)</a>
+</li>
+        <li><a href="generated/gtime.time_series_models.Average.html#gtime.time_series_models.Average.__init__">(gtime.time_series_models.Average method)</a>
+</li>
+        <li><a href="generated/gtime.time_series_models.CVPipeline.html#gtime.time_series_models.CVPipeline.__init__">(gtime.time_series_models.CVPipeline method)</a>
+</li>
+        <li><a href="generated/gtime.time_series_models.Drift.html#gtime.time_series_models.Drift.__init__">(gtime.time_series_models.Drift method)</a>
+</li>
+        <li><a href="generated/gtime.time_series_models.Naive.html#gtime.time_series_models.Naive.__init__">(gtime.time_series_models.Naive method)</a>
+</li>
+        <li><a href="generated/gtime.time_series_models.SeasonalNaive.html#gtime.time_series_models.SeasonalNaive.__init__">(gtime.time_series_models.SeasonalNaive method)</a>
+</li>
+        <li><a href="generated/gtime.time_series_models.TimeSeriesForecastingModel.html#gtime.time_series_models.TimeSeriesForecastingModel.__init__">(gtime.time_series_models.TimeSeriesForecastingModel method)</a>
+</li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.plotting.acf_plot.html#gtime.plotting.acf_plot">acf_plot() (in module gtime.plotting)</a>
+</li>
+      <li><a href="generated/gtime.time_series_models.AR.html#gtime.time_series_models.AR">AR (class in gtime.time_series_models)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.time_series_models.Average.html#gtime.time_series_models.Average">Average (class in gtime.time_series_models)</a>
+</li>
+      <li><a href="generated/gtime.forecasting.AverageForecaster.html#gtime.forecasting.AverageForecaster">AverageForecaster (class in gtime.forecasting)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.model_selection.blocking_time_series_split.html#gtime.model_selection.blocking_time_series_split">blocking_time_series_split() (in module gtime.model_selection)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -338,11 +475,29 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/gtime.feature_generation.Calendar.html#gtime.feature_generation.Calendar">Calendar (class in gtime.feature_generation)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/gtime.feature_generation.Constant.html#gtime.feature_generation.Constant">Constant (class in gtime.feature_generation)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.feature_extraction.CrestFactorDetrending.html#gtime.feature_extraction.CrestFactorDetrending">CrestFactorDetrending (class in gtime.feature_extraction)</a>
+</li>
       <li><a href="generated/gtime.feature_extraction.CustomFeature.html#gtime.feature_extraction.CustomFeature">CustomFeature (class in gtime.feature_extraction)</a>
+</li>
+      <li><a href="generated/gtime.time_series_models.CVPipeline.html#gtime.time_series_models.CVPipeline">CVPipeline (class in gtime.time_series_models)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.feature_extraction.Detrender.html#gtime.feature_extraction.Detrender">Detrender (class in gtime.feature_extraction)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.time_series_models.Drift.html#gtime.time_series_models.Drift">Drift (class in gtime.time_series_models)</a>
+</li>
+      <li><a href="generated/gtime.forecasting.DriftForecaster.html#gtime.forecasting.DriftForecaster">DriftForecaster (class in gtime.forecasting)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -351,6 +506,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/gtime.feature_extraction.Exogenous.html#gtime.feature_extraction.Exogenous">Exogenous (class in gtime.feature_extraction)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.regressors.ExplainableRegressor.html#gtime.regressors.ExplainableRegressor">ExplainableRegressor (class in gtime.regressors)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -373,6 +532,10 @@
       <li><a href="generated/gtime.forecasting.GAR.html#gtime.forecasting.GAR">GAR (class in gtime.forecasting)</a>
 </li>
       <li><a href="generated/gtime.forecasting.GARFF.html#gtime.forecasting.GARFF">GARFF (class in gtime.forecasting)</a>
+</li>
+      <li><a href="generated/gtime.metrics.gmae.html#gtime.metrics.gmae">gmae() (in module gtime.metrics)</a>
+</li>
+      <li><a href="generated/gtime.causality.GrangerCausality.html#gtime.causality.GrangerCausality">GrangerCausality (class in gtime.causality)</a>
 </li>
       <li>
     gtime.causality
@@ -402,13 +565,20 @@
         <li><a href="api.html#module-gtime.feature_generation">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     gtime.forecasting
 
       <ul>
         <li><a href="api.html#module-gtime.forecasting">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    gtime.hierarchical
+
+      <ul>
+        <li><a href="api.html#module-gtime.hierarchical">module</a>
 </li>
       </ul></li>
       <li>
@@ -426,6 +596,13 @@
 </li>
       </ul></li>
       <li>
+    gtime.plotting
+
+      <ul>
+        <li><a href="api.html#module-gtime.plotting">module</a>
+</li>
+      </ul></li>
+      <li>
     gtime.preprocessing
 
       <ul>
@@ -439,12 +616,33 @@
         <li><a href="api.html#module-gtime.regressors">module</a>
 </li>
       </ul></li>
+      <li>
+    gtime.time_series_models
+
+      <ul>
+        <li><a href="api.html#module-gtime.time_series_models">module</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.forecasting.HedgeForecaster.html#gtime.forecasting.HedgeForecaster">HedgeForecaster (class in gtime.forecasting)</a>
+</li>
+      <li><a href="generated/gtime.hierarchical.HierarchicalBase.html#gtime.hierarchical.HierarchicalBase">HierarchicalBase (class in gtime.hierarchical)</a>
+</li>
+      <li><a href="generated/gtime.hierarchical.HierarchicalBottomUp.html#gtime.hierarchical.HierarchicalBottomUp">HierarchicalBottomUp (class in gtime.hierarchical)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.hierarchical.HierarchicalMiddleOut.html#gtime.hierarchical.HierarchicalMiddleOut">HierarchicalMiddleOut (class in gtime.hierarchical)</a>
+</li>
+      <li><a href="generated/gtime.hierarchical.HierarchicalNaive.html#gtime.hierarchical.HierarchicalNaive">HierarchicalNaive (class in gtime.hierarchical)</a>
+</li>
+      <li><a href="generated/gtime.hierarchical.HierarchicalTopDown.html#gtime.hierarchical.HierarchicalTopDown">HierarchicalTopDown (class in gtime.hierarchical)</a>
+</li>
       <li><a href="generated/gtime.model_selection.horizon_shift.html#gtime.model_selection.horizon_shift">horizon_shift() (in module gtime.model_selection)</a>
 </li>
   </ul></td>
@@ -453,7 +651,13 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.plotting.lag_plot.html#gtime.plotting.lag_plot">lag_plot() (in module gtime.plotting)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/gtime.regressors.LinearRegressor.html#gtime.regressors.LinearRegressor">LinearRegressor (class in gtime.regressors)</a>
+</li>
+      <li><a href="generated/gtime.metrics.log_mse.html#gtime.metrics.log_mse">log_mse() (in module gtime.metrics)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -461,6 +665,10 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.metrics.mae.html#gtime.metrics.mae">mae() (in module gtime.metrics)</a>
+</li>
+      <li><a href="generated/gtime.metrics.mape.html#gtime.metrics.mape">mape() (in module gtime.metrics)</a>
+</li>
       <li><a href="generated/gtime.metrics.max_error.html#gtime.metrics.max_error">max_error() (in module gtime.metrics)</a>
 </li>
       <li>
@@ -477,13 +685,19 @@
 </li>
         <li><a href="api.html#module-gtime.forecasting">gtime.forecasting</a>
 </li>
+        <li><a href="api.html#module-gtime.hierarchical">gtime.hierarchical</a>
+</li>
         <li><a href="api.html#module-gtime.metrics">gtime.metrics</a>
 </li>
         <li><a href="api.html#module-gtime.model_selection">gtime.model_selection</a>
 </li>
+        <li><a href="api.html#module-gtime.plotting">gtime.plotting</a>
+</li>
         <li><a href="api.html#module-gtime.preprocessing">gtime.preprocessing</a>
 </li>
         <li><a href="api.html#module-gtime.regressors">gtime.regressors</a>
+</li>
+        <li><a href="api.html#module-gtime.time_series_models">gtime.time_series_models</a>
 </li>
       </ul></li>
   </ul></td>
@@ -491,6 +705,30 @@
       <li><a href="generated/gtime.feature_extraction.MovingAverage.html#gtime.feature_extraction.MovingAverage">MovingAverage (class in gtime.feature_extraction)</a>
 </li>
       <li><a href="generated/gtime.feature_extraction.MovingCustomFunction.html#gtime.feature_extraction.MovingCustomFunction">MovingCustomFunction (class in gtime.feature_extraction)</a>
+</li>
+      <li><a href="generated/gtime.metrics.mse.html#gtime.metrics.mse">mse() (in module gtime.metrics)</a>
+</li>
+      <li><a href="generated/gtime.forecasting.MultiFeatureGAR.html#gtime.forecasting.MultiFeatureGAR">MultiFeatureGAR (class in gtime.forecasting)</a>
+</li>
+      <li><a href="generated/gtime.forecasting.MultiFeatureMultiOutputRegressor.html#gtime.forecasting.MultiFeatureMultiOutputRegressor">MultiFeatureMultiOutputRegressor (class in gtime.forecasting)</a>
+
+      <ul>
+        <li><a href="generated/gtime.regressors.MultiFeatureMultiOutputRegressor.html#gtime.regressors.MultiFeatureMultiOutputRegressor">(class in gtime.regressors)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.time_series_models.Naive.html#gtime.time_series_models.Naive">Naive (class in gtime.time_series_models)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.forecasting.NaiveForecaster.html#gtime.forecasting.NaiveForecaster">NaiveForecaster (class in gtime.forecasting)</a>
+</li>
+      <li><a href="generated/gtime.metrics.non_zero_smape.html#gtime.metrics.non_zero_smape">non_zero_smape() (in module gtime.metrics)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -507,18 +745,42 @@
   </ul></td>
 </tr></table>
 
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.metrics.r_square.html#gtime.metrics.r_square">r_square() (in module gtime.metrics)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.metrics.rmse.html#gtime.metrics.rmse">rmse() (in module gtime.metrics)</a>
+</li>
+      <li><a href="generated/gtime.metrics.rmsle.html#gtime.metrics.rmsle">rmsle() (in module gtime.metrics)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.plotting.seasonal_plot.html#gtime.plotting.seasonal_plot">seasonal_plot() (in module gtime.plotting)</a>
+</li>
+      <li><a href="generated/gtime.plotting.seasonal_subplots.html#gtime.plotting.seasonal_subplots">seasonal_subplots() (in module gtime.plotting)</a>
+</li>
+      <li><a href="generated/gtime.time_series_models.SeasonalNaive.html#gtime.time_series_models.SeasonalNaive">SeasonalNaive (class in gtime.time_series_models)</a>
+</li>
+      <li><a href="generated/gtime.forecasting.SeasonalNaiveForecaster.html#gtime.forecasting.SeasonalNaiveForecaster">SeasonalNaiveForecaster (class in gtime.forecasting)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/gtime.feature_extraction.Shift.html#gtime.feature_extraction.Shift">Shift (class in gtime.feature_extraction)</a>
 </li>
       <li><a href="generated/gtime.causality.ShiftedLinearCoefficient.html#gtime.causality.ShiftedLinearCoefficient">ShiftedLinearCoefficient (class in gtime.causality)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/gtime.causality.ShiftedPearsonCorrelation.html#gtime.causality.ShiftedPearsonCorrelation">ShiftedPearsonCorrelation (class in gtime.causality)</a>
 </li>
       <li><a href="generated/gtime.metrics.smape.html#gtime.metrics.smape">smape() (in module gtime.metrics)</a>
+</li>
+      <li><a href="generated/gtime.feature_extraction.SortedDensity.html#gtime.feature_extraction.SortedDensity">SortedDensity (class in gtime.feature_extraction)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -526,10 +788,14 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/gtime.preprocessing.TimeSeriesPreparation.html#gtime.preprocessing.TimeSeriesPreparation">TimeSeriesPreparation (class in gtime.preprocessing)</a>
+      <li><a href="generated/gtime.model_selection.time_series_split.html#gtime.model_selection.time_series_split">time_series_split() (in module gtime.model_selection)</a>
+</li>
+      <li><a href="generated/gtime.time_series_models.TimeSeriesForecastingModel.html#gtime.time_series_models.TimeSeriesForecastingModel">TimeSeriesForecastingModel (class in gtime.time_series_models)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gtime.preprocessing.TimeSeriesPreparation.html#gtime.preprocessing.TimeSeriesPreparation">TimeSeriesPreparation (class in gtime.preprocessing)</a>
+</li>
       <li><a href="generated/gtime.forecasting.TrendForecaster.html#gtime.forecasting.TrendForecaster">TrendForecaster (class in gtime.forecasting)</a>
 </li>
   </ul></td>

@@ -1,0 +1,14 @@
+:mod:`gtime.metrics`.r_square
+==========================================
+
+.. currentmodule:: gtime.metrics
+
+.. autofunction:: r_square
+
+..
+    Exclude sphinx-gallery generated examples since we use binder for now
+    include:: gtime.metrics.r_square.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

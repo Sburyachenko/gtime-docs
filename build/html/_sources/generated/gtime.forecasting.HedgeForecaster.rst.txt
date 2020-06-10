@@ -1,0 +1,18 @@
+:mod:`gtime.forecasting`.HedgeForecaster
+===============================================
+
+.. currentmodule:: gtime.forecasting
+
+.. autoclass:: HedgeForecaster
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.forecasting.HedgeForecaster.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

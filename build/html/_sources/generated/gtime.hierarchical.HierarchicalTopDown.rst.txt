@@ -1,0 +1,18 @@
+:mod:`gtime.hierarchical`.HierarchicalTopDown
+====================================================
+
+.. currentmodule:: gtime.hierarchical
+
+.. autoclass:: HierarchicalTopDown
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.hierarchical.HierarchicalTopDown.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

@@ -1,0 +1,14 @@
+:mod:`gtime.model_selection`.blocking_time_series_split
+====================================================================
+
+.. currentmodule:: gtime.model_selection
+
+.. autofunction:: blocking_time_series_split
+
+..
+    Exclude sphinx-gallery generated examples since we use binder for now
+    include:: gtime.model_selection.blocking_time_series_split.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

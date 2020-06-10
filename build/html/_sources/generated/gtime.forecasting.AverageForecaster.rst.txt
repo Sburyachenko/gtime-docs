@@ -1,0 +1,18 @@
+:mod:`gtime.forecasting`.AverageForecaster
+=================================================
+
+.. currentmodule:: gtime.forecasting
+
+.. autoclass:: AverageForecaster
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.forecasting.AverageForecaster.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

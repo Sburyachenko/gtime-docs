@@ -1,0 +1,18 @@
+:mod:`gtime.time_series_models`.Naive
+============================================
+
+.. currentmodule:: gtime.time_series_models
+
+.. autoclass:: Naive
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.time_series_models.Naive.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

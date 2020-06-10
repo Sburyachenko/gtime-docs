@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>gtime.model_selection.blocking_time_series_split &mdash; giotto-time 0.2.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="gtime.plotting.seasonal_plot" href="gtime.plotting.seasonal_plot.html" />
+    <link rel="prev" title="gtime.model_selection.time_series_split" href="gtime.model_selection.time_series_split.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> giotto-time
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/about.html">About giotto-time</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../about/about.html#releases">Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/releases.html">Release 0.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/releases.html#release-0-2-0">Release 0.2.0</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../about/releases.html#import-name-change">Import name change</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about/releases.html#renaming">Renaming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about/releases.html#moving">Moving</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about/releases.html#major-features-and-improvements">Major Features and Improvements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about/releases.html#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../about/releases.html#release-0-1-2">Release 0.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/releases.html#release-0-1-1">Release 0.1.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/releases.html#release-0-1-0">Release 0.1.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about/about.html#licenses">Licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/about.html#contributing">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/about.html#links">Links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/about.html#community">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/about.html#contacts">Contacts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#user-installation">User installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#developer-installation">Developer installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#requirements">Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#user-requirements">User requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#developer-requirements">Developer requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#documentation-requirements">Documentation requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/user_guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic.html">Basic examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/notebooks/quick-start.html">Quick start</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/quick-start.html#ingredients">Ingredients</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/quick-start.html#data">Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/quick-start.html#time-series-preparation">Time Series Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/quick-start.html#feature-extraction">Feature extraction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/quick-start.html#train-test-split">Train-Test split</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/quick-start.html#training">Training</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/quick-start.html#forecasting">Forecasting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/notebooks/simple_models.html">Naïve models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/simple_models.html#initializing-the-time-series">Initializing the time series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/simple_models.html#time-series-preparation">Time Series Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/simple_models.html#naive-model">Naïve model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/simple_models.html#seasonal-naive-model">Seasonal naïve model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/simple_models.html#average-model">Average model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/simple_models.html#drift-model">Drift model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/notebooks/plotting_example.html">Data analysis with giotto-time plotting tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/plotting_example.html#imports-and-setups">Imports and setups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/plotting_example.html#data-setup">Data setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/plotting_example.html#exploratory-data-analysis">Exploratory data analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced recepies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/notebooks/energy_demand_time_series.html">Energy Demand Prediction in Switzerland</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/energy_demand_time_series.html#library-imports">Library Imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/energy_demand_time_series.html#import-data-and-preprocessing">Import Data and Preprocessing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/energy_demand_time_series.html#detrending-and-seasonality">Detrending and Seasonality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/energy_demand_time_series.html#causality-testing">Causality testing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/energy_demand_time_series.html#feature-creation">Feature Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/energy_demand_time_series.html#prediction">Prediction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/notebooks/energy_demand_time_series.html#comparison-of-different-models">Comparison of different models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-gtime.causality">Causality Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtime.causality.ShiftedLinearCoefficient.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.causality</span></code>.ShiftedLinearCoefficient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.causality.ShiftedPearsonCorrelation.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.causality</span></code>.ShiftedPearsonCorrelation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.causality.GrangerCausality.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.causality</span></code>.GrangerCausality</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-gtime.compose">Compose</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtime.compose.FeatureCreation.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.compose</span></code>.FeatureCreation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-gtime.feature_extraction">Feature Extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtime.feature_extraction.Shift.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.feature_extraction.MovingAverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.MovingAverage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.feature_extraction.MovingCustomFunction.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.MovingCustomFunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.feature_extraction.Polynomial.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Polynomial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.feature_extraction.Exogenous.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Exogenous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.feature_extraction.CustomFeature.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.CustomFeature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.feature_extraction.Detrender.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Detrender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.feature_extraction.SortedDensity.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.SortedDensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.feature_extraction.CrestFactorDetrending.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.CrestFactorDetrending</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-gtime.feature_generation">Feature Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtime.feature_generation.PeriodicSeasonal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_generation</span></code>.PeriodicSeasonal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.feature_generation.Constant.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_generation</span></code>.Constant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.feature_generation.Calendar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_generation</span></code>.Calendar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-gtime.forecasting">Forecasting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtime.forecasting.GAR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.GAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.forecasting.GARFF.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.GARFF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.forecasting.MultiFeatureGAR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.MultiFeatureGAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.forecasting.TrendForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.TrendForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.forecasting.HedgeForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.HedgeForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.forecasting.NaiveForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.NaiveForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.forecasting.SeasonalNaiveForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.SeasonalNaiveForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.forecasting.DriftForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.DriftForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.forecasting.AverageForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.AverageForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.forecasting.MultiFeatureMultiOutputRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.MultiFeatureMultiOutputRegressor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-gtime.hierarchical">Hierarchical</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtime.hierarchical.HierarchicalBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.hierarchical.HierarchicalNaive.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalNaive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.hierarchical.HierarchicalBottomUp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalBottomUp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.hierarchical.HierarchicalTopDown.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalTopDown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.hierarchical.HierarchicalMiddleOut.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalMiddleOut</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-gtime.metrics">Metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtime.metrics.non_zero_smape.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.non_zero_smape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.metrics.smape.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.smape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.metrics.max_error.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.max_error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.metrics.mse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.mse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.metrics.log_mse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.log_mse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.metrics.r_square.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.r_square</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.metrics.mae.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.mae</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.metrics.mape.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.mape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.metrics.rmse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.rmse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.metrics.rmsle.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.rmsle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.metrics.gmae.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.gmae</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-gtime.model_selection">Model Selection</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gtime.model_selection.FeatureSplitter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.FeatureSplitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.model_selection.horizon_shift.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.horizon_shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.model_selection.time_series_split.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.time_series_split</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.blocking_time_series_split</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-gtime.plotting">Plotting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtime.plotting.seasonal_plot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.seasonal_plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.plotting.seasonal_subplots.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.seasonal_subplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.plotting.acf_plot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.acf_plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.plotting.lag_plot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.lag_plot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-gtime.preprocessing">Preprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtime.preprocessing.TimeSeriesPreparation.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.preprocessing</span></code>.TimeSeriesPreparation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-gtime.regressors">Regressors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtime.regressors.LinearRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.regressors</span></code>.LinearRegressor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.regressors.MultiFeatureMultiOutputRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.regressors</span></code>.MultiFeatureMultiOutputRegressor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.regressors.ExplainableRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.regressors</span></code>.ExplainableRegressor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-gtime.time_series_models">Time series models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtime.time_series_models.TimeSeriesForecastingModel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.TimeSeriesForecastingModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.time_series_models.AR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.AR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.time_series_models.Naive.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.Naive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.time_series_models.SeasonalNaive.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.SeasonalNaive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.time_series_models.Average.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.Average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.time_series_models.Drift.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.Drift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtime.time_series_models.CVPipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.CVPipeline</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/math.html">Theory Glossary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../theory/math.html#symbols">Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/math.html#naive-model">Naïve model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/math.html#causality">Causality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/math.html#explainability">Explainability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/math.html#generalized-linear-models">Generalized linear models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/math.html#hierarchical-models">Hierarchical models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/math.html#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">giotto-time</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../api.html">Welcome to giotto-time’s API reference!</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.blocking_time_series_split</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/generated/gtime.model_selection.blocking_time_series_split.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gtime-model-selection-blocking-time-series-split">
+<h1><a class="reference internal" href="../api.html#module-gtime.model_selection" title="gtime.model_selection"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code></a>.blocking_time_series_split<a class="headerlink" href="#gtime-model-selection-blocking-time-series-split" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="gtime.model_selection.blocking_time_series_split">
+<code class="sig-prename descclassname">gtime.model_selection.</code><code class="sig-name descname">blocking_time_series_split</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_series</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em>, <em class="sig-param"><span class="n">n_splits</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">split_on</span><span class="o">=</span><span class="default_value">'index'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtime.model_selection.blocking_time_series_split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time Series cross-validator</p>
+<p>Blocking Time Series Split works by adding margin after each split.
+The margin is between the folds used at each iteration in order to prevent the model
+from memorizing patterns from an iteration to the next.</p>
+<p>If the data is not a timeries then the split is based on the number of samples.
+If the data has a time index and split_on ‘time’ then divide the time series based on time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>time_series</strong><span class="classifier">pandas DataFrame, shape (n_samples, n_features), required</span></dt><dd></dd>
+<dt><strong>n_splits</strong><span class="classifier">int, default = 4, required</span></dt><dd></dd>
+<dt><strong>The number of splits/folds on the dataset</strong></dt><dd></dd>
+<dt><strong>split_on</strong><span class="classifier">‘index’, default = ‘index’. Optional - ‘time’</span></dt><dd></dd>
+<dt><strong>If the parameter is ‘time’ then dataframe index must be DatetimeIndex or PeriodIndex or TimedeltaIndex.</strong></dt><dd></dd>
+<dt><strong>The dataset will be split based on time</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>fold</strong><span class="classifier">RangeIndex indexes of folds, or</span></dt><dd></dd>
+<dt><strong>time_fold</strong><span class="classifier">DateTimeIndex of folds if split_on ‘time’</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Example 1)
+&gt;&gt;&gt; date_rng = pd.date_range(start=’1/1/2018’, end=’1/08/2018’, freq=’D’)
+&gt;&gt;&gt; time_series = pd.DataFrame(date_rng, columns=[‘date’])
+&gt;&gt;&gt; time_series.set_index(‘date’, inplace=True)
+&gt;&gt;&gt; time_series[‘data’] = np.random.randint(0,100,size=(len(date_rng)))
+&gt;&gt;&gt; for fold in (time_series_split(time_series, n_splits=4, split_on=’time’)):
+…      print(fold)
+DatetimeIndex([‘2018-01-01’, ‘2018-01-02’], dtype=’datetime64[ns]’, name=’date’, freq=None)
+DatetimeIndex([‘2018-01-03’, ‘2018-01-04’], dtype=’datetime64[ns]’, name=’date’, freq=None)
+DatetimeIndex([‘2018-01-05’, ‘2018-01-06’], dtype=’datetime64[ns]’, name=’date’, freq=None)
+DatetimeIndex([‘2018-01-07’, ‘2018-01-08’], dtype=’datetime64[ns]’, name=’date’, freq=None)</p>
+<p>Example 2)
+&gt;&gt;&gt; df = pd.DataFrame(np.random.randint(0,100,size=(16, 4)), columns=list(‘ABCD’))
+&gt;&gt;&gt; for fold in (time_series_split(df, n_splits=4, split_on=’index’)):
+…      print(fold)
+RangeIndex(start=0, stop=4, step=1)
+RangeIndex(start=4, stop=8, step=1)
+RangeIndex(start=8, stop=12, step=1)
+RangeIndex(start=12, stop=16, step=1)</p>
+</dd></dl>
+
+<div class="clearer"></div></div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gtime.plotting.seasonal_plot.html" class="btn btn-neutral float-right" title="gtime.plotting.seasonal_plot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gtime.model_selection.time_series_split.html" class="btn btn-neutral float-left" title="gtime.model_selection.time_series_split" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, L2F
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

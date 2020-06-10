@@ -1,0 +1,14 @@
+:mod:`gtime.metrics`.non_zero_smape
+================================================
+
+.. currentmodule:: gtime.metrics
+
+.. autofunction:: non_zero_smape
+
+..
+    Exclude sphinx-gallery generated examples since we use binder for now
+    include:: gtime.metrics.non_zero_smape.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

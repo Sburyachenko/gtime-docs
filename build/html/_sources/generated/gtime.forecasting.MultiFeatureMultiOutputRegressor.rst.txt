@@ -1,0 +1,18 @@
+:mod:`gtime.forecasting`.MultiFeatureMultiOutputRegressor
+================================================================
+
+.. currentmodule:: gtime.forecasting
+
+.. autoclass:: MultiFeatureMultiOutputRegressor
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.forecasting.MultiFeatureMultiOutputRegressor.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

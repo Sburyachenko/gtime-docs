@@ -1,0 +1,14 @@
+:mod:`gtime.metrics`.rmse
+======================================
+
+.. currentmodule:: gtime.metrics
+
+.. autofunction:: rmse
+
+..
+    Exclude sphinx-gallery generated examples since we use binder for now
+    include:: gtime.metrics.rmse.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

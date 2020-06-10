@@ -1,0 +1,1390 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Energy Demand Prediction in Switzerland &mdash; giotto-time 0.2.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Welcome to giotto-time’s API reference!" href="../../api.html" />
+    <link rel="prev" title="Advanced recepies" href="../advanced.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> giotto-time
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about/about.html">About giotto-time</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about/about.html#releases">Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about/releases.html">Release 0.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about/releases.html#release-0-2-0">Release 0.2.0</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../about/releases.html#import-name-change">Import name change</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../about/releases.html#renaming">Renaming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../about/releases.html#moving">Moving</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../about/releases.html#major-features-and-improvements">Major Features and Improvements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../about/releases.html#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../about/releases.html#release-0-1-2">Release 0.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about/releases.html#release-0-1-1">Release 0.1.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about/releases.html#release-0-1-0">Release 0.1.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/about.html#licenses">Licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/about.html#contributing">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/about.html#links">Links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/about.html#community">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/about.html#contacts">Contacts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#user-installation">User installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#developer-installation">Developer installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#requirements">Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#user-requirements">User requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#developer-requirements">Developer requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#documentation-requirements">Documentation requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../user_guide.html">User guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../basic.html">Basic examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick-start.html">Quick start</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#ingredients">Ingredients</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#data">Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#time-series-preparation">Time Series Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#feature-extraction">Feature extraction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#train-test-split">Train-Test split</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#training">Training</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#forecasting">Forecasting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="simple_models.html">Naïve models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="simple_models.html#initializing-the-time-series">Initializing the time series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_models.html#time-series-preparation">Time Series Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_models.html#naive-model">Naïve model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_models.html#seasonal-naive-model">Seasonal naïve model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_models.html#average-model">Average model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_models.html#drift-model">Drift model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="plotting_example.html">Data analysis with giotto-time plotting tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="plotting_example.html#imports-and-setups">Imports and setups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting_example.html#data-setup">Data setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting_example.html#exploratory-data-analysis">Exploratory data analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../advanced.html">Advanced recepies</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Energy Demand Prediction in Switzerland</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#library-imports">Library Imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#import-data-and-preprocessing">Import Data and Preprocessing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detrending-and-seasonality">Detrending and Seasonality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#causality-testing">Causality testing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#feature-creation">Feature Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prediction">Prediction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comparison-of-different-models">Comparison of different models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.causality">Causality Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.causality.ShiftedLinearCoefficient.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.causality</span></code>.ShiftedLinearCoefficient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.causality.ShiftedPearsonCorrelation.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.causality</span></code>.ShiftedPearsonCorrelation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.causality.GrangerCausality.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.causality</span></code>.GrangerCausality</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.compose">Compose</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.compose.FeatureCreation.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.compose</span></code>.FeatureCreation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.feature_extraction">Feature Extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.Shift.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.MovingAverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.MovingAverage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.MovingCustomFunction.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.MovingCustomFunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.Polynomial.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Polynomial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.Exogenous.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Exogenous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.CustomFeature.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.CustomFeature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.Detrender.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Detrender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.SortedDensity.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.SortedDensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.CrestFactorDetrending.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.CrestFactorDetrending</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.feature_generation">Feature Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_generation.PeriodicSeasonal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_generation</span></code>.PeriodicSeasonal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_generation.Constant.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_generation</span></code>.Constant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_generation.Calendar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_generation</span></code>.Calendar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.forecasting">Forecasting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.GAR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.GAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.GARFF.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.GARFF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.MultiFeatureGAR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.MultiFeatureGAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.TrendForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.TrendForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.HedgeForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.HedgeForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.NaiveForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.NaiveForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.SeasonalNaiveForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.SeasonalNaiveForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.DriftForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.DriftForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.AverageForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.AverageForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.MultiFeatureMultiOutputRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.MultiFeatureMultiOutputRegressor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.hierarchical">Hierarchical</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.hierarchical.HierarchicalBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.hierarchical.HierarchicalNaive.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalNaive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.hierarchical.HierarchicalBottomUp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalBottomUp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.hierarchical.HierarchicalTopDown.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalTopDown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.hierarchical.HierarchicalMiddleOut.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalMiddleOut</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.metrics">Metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.non_zero_smape.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.non_zero_smape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.smape.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.smape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.max_error.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.max_error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.mse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.mse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.log_mse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.log_mse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.r_square.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.r_square</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.mae.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.mae</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.mape.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.mape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.rmse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.rmse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.rmsle.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.rmsle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.gmae.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.gmae</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.model_selection">Model Selection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.model_selection.FeatureSplitter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.FeatureSplitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.model_selection.horizon_shift.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.horizon_shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.model_selection.time_series_split.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.time_series_split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.model_selection.blocking_time_series_split.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.blocking_time_series_split</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.plotting">Plotting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.plotting.seasonal_plot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.seasonal_plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.plotting.seasonal_subplots.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.seasonal_subplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.plotting.acf_plot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.acf_plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.plotting.lag_plot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.lag_plot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.preprocessing">Preprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.preprocessing.TimeSeriesPreparation.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.preprocessing</span></code>.TimeSeriesPreparation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.regressors">Regressors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.regressors.LinearRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.regressors</span></code>.LinearRegressor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.regressors.MultiFeatureMultiOutputRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.regressors</span></code>.MultiFeatureMultiOutputRegressor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.regressors.ExplainableRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.regressors</span></code>.ExplainableRegressor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.time_series_models">Time series models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.TimeSeriesForecastingModel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.TimeSeriesForecastingModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.AR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.AR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.Naive.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.Naive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.SeasonalNaive.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.SeasonalNaive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.Average.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.Average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.Drift.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.Drift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.CVPipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.CVPipeline</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/math.html">Theory Glossary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../theory/math.html#symbols">Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theory/math.html#naive-model">Naïve model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theory/math.html#causality">Causality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theory/math.html#explainability">Explainability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theory/math.html#generalized-linear-models">Generalized linear models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theory/math.html#hierarchical-models">Hierarchical models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theory/math.html#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">giotto-time</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../user_guide.html">User guide</a> &raquo;</li>
+        
+          <li><a href="../advanced.html">Advanced recepies</a> &raquo;</li>
+        
+      <li>Energy Demand Prediction in Switzerland</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/user_guide/notebooks/energy_demand_time_series.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="energy-demand-prediction-in-switzerland">
+<h1>Energy Demand Prediction in Switzerland<a class="headerlink" href="#energy-demand-prediction-in-switzerland" title="Permalink to this headline">¶</a></h1>
+<p><em>Created by:</em> Colin Kälin and Alessio Baccelli, January/February 2020</p>
+<p><em>Blog post:</em> “Energy Demand Prediction in Switzerland with giotto-time”
+<a class="reference external" href="https://towardsdatascience.com/getting-started-with-giotto-time-d9b2088d60ca">https://towardsdatascience.com/getting-started-with-giotto-time-d9b2088d60ca</a>
+<em>Summary:</em> This notebook provides a tutorial for time series analysis
+with <a class="reference external" href="https://github.com/giotto-ai/giotto-time">giotto-time</a>. The
+goal is to predict the energy demand of the swissgrid network 21 days in
+advance.</p>
+<p><em>Data:</em> We are using hourly energy demand data from swissgrid, a Swiss
+transmission grid operator. The data is available here
+<a class="reference external" href="https://www.swissgrid.ch/en/home/operation/grid-data/generation.html">https://www.swissgrid.ch/en/home/operation/grid-data/generation.html</a> and
+processed to represent the mean hourly demand per day.</p>
+<p><em>Contents:</em> * Detrending and seaonality * Causality testing * Feature
+creation * GAR model fit and make predictions * Comparison of
+different models</p>
+<div class="section" id="library-imports">
+<h2>Library Imports<a class="headerlink" href="#library-imports" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../Giotto/giotto-time&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># giotto-time</span>
+<span class="c1"># Feature creation</span>
+<span class="kn">from</span> <span class="nn">gtime.compose</span> <span class="kn">import</span> <span class="n">FeatureCreation</span>
+<span class="kn">from</span> <span class="nn">gtime.feature_generation</span> <span class="kn">import</span> <span class="n">Calendar</span><span class="p">,</span> <span class="n">PeriodicSeasonal</span>
+<span class="kn">from</span> <span class="nn">gtime.feature_extraction</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Detrender</span><span class="p">,</span> <span class="n">CustomFeature</span><span class="p">,</span> <span class="n">Polynomial</span><span class="p">,</span>
+                                           <span class="n">Shift</span><span class="p">,</span> <span class="n">MovingAverage</span><span class="p">,</span> <span class="n">Exogenous</span><span class="p">)</span>
+
+<span class="c1"># Causality testing</span>
+<span class="kn">from</span> <span class="nn">gtime.causality</span> <span class="kn">import</span> <span class="n">ShiftedLinearCoefficient</span>
+
+<span class="c1"># Models</span>
+<span class="kn">from</span> <span class="nn">gtime.forecasting</span> <span class="kn">import</span> <span class="n">GAR</span><span class="p">,</span> <span class="n">GARFF</span>
+<span class="kn">from</span> <span class="nn">gtime.model_selection</span> <span class="kn">import</span> <span class="n">FeatureSplitter</span><span class="p">,</span> <span class="n">horizon_shift</span>
+<span class="kn">from</span> <span class="nn">gtime.metrics</span> <span class="kn">import</span> <span class="n">max_error</span><span class="p">,</span> <span class="n">smape</span>
+<span class="kn">from</span> <span class="nn">gtime.regressors</span> <span class="kn">import</span> <span class="n">LinearRegressor</span>
+
+<span class="c1"># Other libraries</span>
+<span class="c1"># Data handling</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># Machine Learning</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="p">(</span><span class="n">RandomForestRegressor</span><span class="p">,</span> <span class="n">GradientBoostingRegressor</span><span class="p">,</span> <span class="n">ExtraTreesRegressor</span><span class="p">,</span>
+                              <span class="n">AdaBoostRegressor</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">max_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">src.scores</span> <span class="kn">import</span> <span class="n">relative_mean_absolute_error</span><span class="p">,</span> <span class="n">calculate_score</span><span class="p">,</span> <span class="n">relative_mean_squared_error</span><span class="p">,</span> <span class="n">highlight_top</span>
+<span class="c1"># Plotting</span>
+<span class="kn">from</span> <span class="nn">src.plotting</span> <span class="kn">import</span> <span class="n">plot_pd</span>
+
+<span class="c1"># Display settings</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:20.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="import-data-and-preprocessing">
+<h2>Import Data and Preprocessing<a class="headerlink" href="#import-data-and-preprocessing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/raw/energy_demand_2016_2019.csv&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We have to do some preprocessing here. * In order for giotto-time to be
+able to work with pandas dataframes, the index has to be an evenly
+spaced pandas DateTime index * In particular, the point mentioned above
+necessitates that we take care of the times when there is a change from
+summer to winter time or vice versa</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_series</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Load [MW]&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">time_series</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">time_series</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()]</span> <span class="c1"># Due to the change to winter time, some indices were duplicated. Remove them.</span>
+<span class="n">new_dates</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">time_series</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+                                      <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">time_series</span><span class="o">.</span><span class="n">index</span><span class="p">))[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">DateOffset</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Due to the change to summer time, some indices were missing. Add them.</span>
+<span class="n">new_values</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">time_series</span><span class="o">.</span><span class="n">index</span><span class="p">))</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">time_series</span><span class="o">.</span><span class="n">index</span><span class="p">))[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">new_dates</span><span class="p">,</span> <span class="n">new_values</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">df_new</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;Load [MW]&#39;</span><span class="p">]</span>
+<span class="n">df_new</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_new</span><span class="p">)</span>
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="n">time_series</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Load [MW]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-11-30 20:00:00</th>
+      <td>5082.19</td>
+    </tr>
+    <tr>
+      <th>2019-11-30 21:00:00</th>
+      <td>5295.39</td>
+    </tr>
+    <tr>
+      <th>2019-11-30 22:00:00</th>
+      <td>5527.06</td>
+    </tr>
+    <tr>
+      <th>2019-11-30 23:00:00</th>
+      <td>5610.04</td>
+    </tr>
+    <tr>
+      <th>2019-12-01 00:00:00</th>
+      <td>5756.34</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>We aggregate the data on a daily basis. The goal is to predict the daily
+mean of the energy demand.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_series</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">date</span>
+
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">g</span><span class="p">:</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;Load [MW]&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="n">time_series</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">time_series</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">time_series</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">time_series</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Load [MW]&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Let’s plot the full time series.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_pd</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Energy Demand Switzerland 2016-2019&#39;</span><span class="p">,</span>
+       <span class="n">y_label</span><span class="o">=</span><span class="s1">&#39;mean energy demand per day [MW]&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/energy_demand_time_series_12_0.png" src="../../_images/energy_demand_time_series_12_0.png" />
+<p>Before we start doing anything, we have to split the data into training
+and test part. We will use the data from January 1st 2016 to November
+30th 2018 as the training set and the rest, i.e. the data from December
+1st 2018 to December 1st 2019 as a test set.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_series_train</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">[</span><span class="n">time_series</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;12-01-2018&#39;</span><span class="p">)]</span>
+<span class="n">time_series_test</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">[</span><span class="n">time_series</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;12-01-2018&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="detrending-and-seasonality">
+<h2>Detrending and Seasonality<a class="headerlink" href="#detrending-and-seasonality" title="Permalink to this headline">¶</a></h2>
+<p>In this part we will * check if there is a trend and remove it *
+identify a the seasonality and create a first feature which is a sine
+wave with the correct shift and period.</p>
+<p>Let’s start with the removal of a polynomial trend.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">detrend_feature</span> <span class="o">=</span> <span class="n">Detrender</span><span class="p">(</span><span class="n">trend</span><span class="o">=</span><span class="s2">&quot;polynomial&quot;</span><span class="p">,</span> <span class="n">trend_x0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">detrended_ts</span> <span class="o">=</span> <span class="n">detrend_feature</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">time_series_train</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As it is possible to see, a constant equal to the mean of the time
+series (a trend polynomial of order 0) has been removed from the time
+series.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_pd</span><span class="p">(</span><span class="n">detrended_ts</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Detrended time series&#39;</span><span class="p">,</span>
+       <span class="n">y_label</span><span class="o">=</span><span class="s1">&#39;mean daily energy demand [MW]&#39;</span><span class="p">,</span>
+       <span class="n">y_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Load [MW]__Detrender&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<img alt="../../_images/energy_demand_time_series_19_0.png" src="../../_images/energy_demand_time_series_19_0.png" />
+<p>What about the seasonality? We can use a sine wave with the period as in
+the season. For this purpose we will use giotto-time’s
+‘PeriodicSeasonalFeature’ function and then shift the sine wave. In this
+case the period is one year.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Shift the time series such that the mean is zero.</span>
+<span class="n">df_detrended</span> <span class="o">=</span> <span class="n">detrended_ts</span>
+<span class="n">df_detrended</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;detrended&#39;</span><span class="p">]</span>
+<span class="n">df_detrended</span> <span class="o">=</span> <span class="n">df_detrended</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">time_series_train</span><span class="p">)</span>
+
+<span class="n">plot_pd</span><span class="p">(</span><span class="n">df_detrended</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Detrended time series&#39;</span><span class="p">,</span>
+       <span class="n">y_label</span><span class="o">=</span><span class="s1">&#39;daily energy demand [MW]&#39;</span><span class="p">,</span>
+       <span class="n">y_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;detrended&#39;</span><span class="p">,</span> <span class="s1">&#39;Load [MW]&#39;</span><span class="p">]);</span>
+
+<span class="c1"># Create the seasonal feature with period = 1 year</span>
+<span class="n">year_period</span> <span class="o">=</span> <span class="n">PeriodicSeasonal</span><span class="p">(</span><span class="n">start_date</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;01-01-2015&#39;</span><span class="p">),</span>
+                                      <span class="n">length</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span>
+                                      <span class="n">index_period</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span>
+                                      <span class="n">period</span><span class="o">=</span><span class="s1">&#39;365 days&#39;</span><span class="p">,</span>
+                                      <span class="n">amplitude</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">year_wave</span> <span class="o">=</span> <span class="n">year_period</span><span class="o">.</span><span class="n">transform</span><span class="p">()</span>
+<span class="n">year_wave</span> <span class="o">=</span> <span class="n">year_wave</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">275</span><span class="p">)</span> <span class="c1">#Found empirically</span>
+<span class="n">year_wave</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;01-01-2015&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/energy_demand_time_series_21_0.png" src="../../_images/energy_demand_time_series_21_0.png" />
+<p>The sine wave now follows the seasonality as shownd in the figure below.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df_detrended</span><span class="p">[</span><span class="s1">&#39;detrended&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;detrended&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_train</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">year_wave</span><span class="p">)</span>
+<span class="n">plot_pd</span><span class="p">(</span><span class="n">df_train</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+       <span class="n">y_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+       <span class="n">y_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;detrended&#39;</span><span class="p">,</span> <span class="s1">&#39;0__PeriodicSeasonal&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<img alt="../../_images/energy_demand_time_series_23_0.png" src="../../_images/energy_demand_time_series_23_0.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year_wave</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">year_wave</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">day</span>
+<span class="n">year_wave</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">year_wave</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span>
+
+<span class="n">start_day</span> <span class="o">=</span> <span class="n">time_series_test</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">day</span>
+<span class="n">start_month</span> <span class="o">=</span> <span class="n">time_series_test</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">month</span>
+
+<span class="n">mean_value</span> <span class="o">=</span> <span class="n">year_wave</span><span class="p">[(</span><span class="n">year_wave</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">start_day</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">year_wave</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">start_month</span><span class="p">)][</span><span class="s1">&#39;0__PeriodicSeasonal&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">((</span><span class="n">time_series_test</span> <span class="o">-</span> <span class="n">time_series_test</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;detrended&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_test</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">time_series_test</span><span class="o">.</span><span class="n">index</span>
+<span class="n">df_test</span> <span class="o">=</span> <span class="n">df_test</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">year_wave</span><span class="p">[</span><span class="s1">&#39;0__PeriodicSeasonal&#39;</span><span class="p">])</span>
+<span class="n">plot_pd</span><span class="p">(</span><span class="n">df_test</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+       <span class="n">y_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+       <span class="n">y_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;detrended&#39;</span><span class="p">,</span> <span class="s1">&#39;0__PeriodicSeasonal&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<img alt="../../_images/energy_demand_time_series_25_0.png" src="../../_images/energy_demand_time_series_25_0.png" />
+</div>
+<div class="section" id="causality-testing">
+<h2>Causality testing<a class="headerlink" href="#causality-testing" title="Permalink to this headline">¶</a></h2>
+<p>The question we want to answer here is which time series causes another.
+In order to do this, we will fix the time series we want to make
+predictions. Then we shift another time series and calculate the
+correlation between the two to find the shift that gives us the highest
+correlation. Giotto-time then allows us to transform the dataframe by
+shifting each column by the best value.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shifts</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;s2&#39;</span><span class="p">,</span> <span class="n">Shift</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="p">[</span><span class="s1">&#39;Load [MW]&#39;</span><span class="p">]),</span>
+          <span class="p">(</span><span class="s1">&#39;s5&#39;</span><span class="p">,</span> <span class="n">Shift</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="p">[</span><span class="s1">&#39;Load [MW]&#39;</span><span class="p">])]</span>
+
+<span class="n">feature_creation</span> <span class="o">=</span> <span class="n">FeatureCreation</span><span class="p">(</span><span class="n">shifts</span><span class="p">)</span>
+
+<span class="n">shifted_df</span> <span class="o">=</span> <span class="n">feature_creation</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span>
+<span class="n">df_causality</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">time_series</span><span class="p">,</span> <span class="n">shifted_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df_causality</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Load [MW]</th>
+      <th>s2__Load [MW]__Shift</th>
+      <th>s5__Load [MW]__Shift</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2016-01-01</th>
+      <td>5500.35</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2016-01-02</th>
+      <td>5655.34</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2016-01-03</th>
+      <td>5572.46</td>
+      <td>5500.35</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2016-01-04</th>
+      <td>6535.29</td>
+      <td>5655.34</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2016-01-05</th>
+      <td>6619.37</td>
+      <td>5572.46</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2016-01-06</th>
+      <td>6710.75</td>
+      <td>6535.29</td>
+      <td>5500.35</td>
+    </tr>
+    <tr>
+      <th>2016-01-07</th>
+      <td>6728.08</td>
+      <td>6619.37</td>
+      <td>5655.34</td>
+    </tr>
+    <tr>
+      <th>2016-01-08</th>
+      <td>6467.40</td>
+      <td>6710.75</td>
+      <td>5572.46</td>
+    </tr>
+    <tr>
+      <th>2016-01-09</th>
+      <td>5693.25</td>
+      <td>6728.08</td>
+      <td>6535.29</td>
+    </tr>
+    <tr>
+      <th>2016-01-10</th>
+      <td>5589.31</td>
+      <td>6467.40</td>
+      <td>6619.37</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>Let’s perform a causality test, i.e. let’s try to find the shift
+necessary to optimize the linear fit coefficients.</p>
+<p>As the two columns ‘s2’ and ‘s5’ are the same time series as the
+original one but with a shift of 2 and 5 respectively, in the best case
+we get a fit coefficient of 1 as can be seen in the dataframe below.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cause</span> <span class="o">=</span> <span class="n">ShiftedLinearCoefficient</span><span class="p">(</span><span class="n">target_col</span><span class="o">=</span><span class="s2">&quot;Load [MW]&quot;</span><span class="p">)</span>
+<span class="n">cause</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_causality</span><span class="p">)</span>
+<span class="n">cause</span><span class="o">.</span><span class="n">max_corrs_</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>y</th>
+      <th>Load [MW]</th>
+    </tr>
+    <tr>
+      <th>x</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Load [MW]</th>
+      <td>0.73</td>
+    </tr>
+    <tr>
+      <th>s2__Load [MW]__Shift</th>
+      <td>0.51</td>
+    </tr>
+    <tr>
+      <th>s5__Load [MW]__Shift</th>
+      <td>0.42</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>We can also look at the corresponding shifts directly. It turns out the
+test can successfully find the correct shifts 2 and 5.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cause</span><span class="o">.</span><span class="n">best_shifts_</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>y</th>
+      <th>Load [MW]</th>
+    </tr>
+    <tr>
+      <th>x</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Load [MW]</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>s2__Load [MW]__Shift</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>s5__Load [MW]__Shift</th>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>This could be used to align two time series in a way that optimizes the
+predictive performance of one on the other without having to train and
+test the full model for each possible shift.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cause</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_causality</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Load [MW]</th>
+      <th>s2__Load [MW]__Shift</th>
+      <th>s5__Load [MW]__Shift</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2016-01-01</th>
+      <td>5500.35</td>
+      <td>nan</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <th>2016-01-02</th>
+      <td>5655.34</td>
+      <td>nan</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <th>2016-01-03</th>
+      <td>5572.46</td>
+      <td>nan</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2016-01-04</th>
+      <td>6535.29</td>
+      <td>nan</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2016-01-05</th>
+      <td>6619.37</td>
+      <td>nan</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>As expected, the time series are aligned again.</p>
+</div>
+<div class="section" id="feature-creation">
+<h2>Feature Creation<a class="headerlink" href="#feature-creation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Some parameters for use later: important is the horizon, i.e. the maximal time frame to try to make predictions about</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;horizon&#39;</span><span class="p">:</span> <span class="mi">21</span><span class="p">,</span>
+              <span class="s1">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+              <span class="s1">&#39;test_horizon&#39;</span><span class="p">:</span> <span class="mi">21</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>One feature that we are interested in are holidays. Giotto-time makes it
+possible to create features according to the public holiday calendar.
+The ‘kernel’ determines how the values are set on the relevant</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calendar</span> <span class="o">=</span> <span class="n">Calendar</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="s1">&#39;europe&#39;</span><span class="p">,</span>
+                    <span class="n">country</span><span class="o">=</span><span class="s1">&#39;Switzerland&#39;</span><span class="p">,</span>
+                    <span class="n">kernel</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;kernel&#39;</span><span class="p">],</span>
+                    <span class="n">start_date</span><span class="o">=</span><span class="n">time_series_train</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+
+<span class="n">ts_copy</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">ts_copy</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">ts_copy</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_period</span><span class="p">()</span>
+<span class="n">holidays</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">ts_copy</span><span class="p">)</span>
+<span class="n">holidays</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+<p>Many other features are available, some of which are used here to create
+features for the model.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List of all features</span>
+<span class="n">mv_avg_3</span> <span class="o">=</span> <span class="n">MovingAverage</span><span class="p">(</span><span class="n">window_size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">mv_avg_7</span> <span class="o">=</span> <span class="n">MovingAverage</span><span class="p">(</span><span class="n">window_size</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">shift_7</span> <span class="o">=</span> <span class="n">Shift</span><span class="p">(</span><span class="n">shift</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">shift_1</span> <span class="o">=</span> <span class="n">Shift</span><span class="p">(</span><span class="n">shift</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">poly_2</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">features_creation</span> <span class="o">=</span> <span class="n">FeatureCreation</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">&#39;mvg_3&#39;</span><span class="p">,</span> <span class="n">mv_avg_3</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Load [MW]&#39;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s1">&#39;mvg_7&#39;</span><span class="p">,</span> <span class="n">mv_avg_7</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Load [MW]&#39;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s1">&#39;s1&#39;</span><span class="p">,</span> <span class="n">shift_1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Load [MW]&#39;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s1">&#39;s7&#39;</span><span class="p">,</span> <span class="n">shift_7</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Load [MW]&#39;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s1">&#39;pol2_0&#39;</span><span class="p">,</span> <span class="n">poly_2</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Load [MW]&#39;</span><span class="p">]),</span>
+<span class="p">])</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">features_creation</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">time_series_train</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">holidays</span><span class="p">)</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;yearly_period&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;0__PeriodicSeasonal&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">horizon_shift</span><span class="p">(</span><span class="n">time_series</span><span class="o">=</span><span class="n">time_series_train</span><span class="p">,</span> <span class="n">horizon</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;horizon&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test</span> <span class="o">=</span> <span class="n">features_creation</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">time_series_test</span><span class="p">)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">horizon_shift</span><span class="p">(</span><span class="n">time_series</span><span class="o">=</span><span class="n">time_series_test</span><span class="p">,</span> <span class="n">horizon</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;horizon&quot;</span><span class="p">])</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">holidays</span><span class="p">)</span>
+<span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;yearly_period&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;0__PeriodicSeasonal&#39;</span><span class="p">]</span>
+<span class="n">test_index</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">index</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="prediction">
+<h2>Prediction<a class="headerlink" href="#prediction" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">featuresplitter</span> <span class="o">=</span> <span class="n">FeatureSplitter</span><span class="p">()</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">featuresplitter</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A short explanation for y_train and y_test:</p>
+<p>y_train has 21 columns, one for each prediction 1 to 21 days into the
+future. The same applies to y_test. Here however we have NaNs for the
+date and time step combination for which no values are available.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_test</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>y_1</th>
+      <th>y_2</th>
+      <th>y_3</th>
+      <th>y_4</th>
+      <th>y_5</th>
+      <th>y_6</th>
+      <th>...</th>
+      <th>y_16</th>
+      <th>y_17</th>
+      <th>y_18</th>
+      <th>y_19</th>
+      <th>y_20</th>
+      <th>y_21</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-11-21</th>
+      <td>5794.63</td>
+      <td>5054.23</td>
+      <td>5105.66</td>
+      <td>5790.47</td>
+      <td>5922.92</td>
+      <td>5928.28</td>
+      <td>...</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <th>2019-11-22</th>
+      <td>5054.23</td>
+      <td>5105.66</td>
+      <td>5790.47</td>
+      <td>5922.92</td>
+      <td>5928.28</td>
+      <td>5936.92</td>
+      <td>...</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <th>2019-11-23</th>
+      <td>5105.66</td>
+      <td>5790.47</td>
+      <td>5922.92</td>
+      <td>5928.28</td>
+      <td>5936.92</td>
+      <td>5797.40</td>
+      <td>...</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <th>2019-11-24</th>
+      <td>5790.47</td>
+      <td>5922.92</td>
+      <td>5928.28</td>
+      <td>5936.92</td>
+      <td>5797.40</td>
+      <td>5559.36</td>
+      <td>...</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <th>2019-11-25</th>
+      <td>5922.92</td>
+      <td>5928.28</td>
+      <td>5936.92</td>
+      <td>5797.40</td>
+      <td>5559.36</td>
+      <td>nan</td>
+      <td>...</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <th>2019-11-26</th>
+      <td>5928.28</td>
+      <td>5936.92</td>
+      <td>5797.40</td>
+      <td>5559.36</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>...</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <th>2019-11-27</th>
+      <td>5936.92</td>
+      <td>5797.40</td>
+      <td>5559.36</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>...</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <th>2019-11-28</th>
+      <td>5797.40</td>
+      <td>5559.36</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>...</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <th>2019-11-29</th>
+      <td>5559.36</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>...</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <th>2019-11-30</th>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>...</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+      <td>nan</td>
+    </tr>
+  </tbody>
+</table>
+<p>10 rows × 21 columns</p>
+</div><p>Giotto-time offers the possiblity to create a generalized autoregression
+model with feed forward (GARFF for short). It’s possible to use any
+scikit-learn friendly estimator, create a GARFF model and then to use
+the well-known fit and predict methods to train and evaluate the model.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the GARFF models</span>
+<span class="n">time_series_model_lr</span> <span class="o">=</span> <span class="n">GARFF</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">LinearRegression</span><span class="p">())</span>
+<span class="n">time_series_model_gb</span> <span class="o">=</span> <span class="n">GARFF</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">GradientBoostingRegressor</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;lad&#39;</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                                                                <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                                                                <span class="n">max_features</span><span class="o">=</span><span class="s1">&#39;sqrt&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">29348</span><span class="p">))</span>
+<span class="n">time_series_model_rf</span> <span class="o">=</span> <span class="n">GARFF</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">RandomForestRegressor</span><span class="p">())</span>
+
+<span class="c1"># Train the GARFF models</span>
+<span class="n">time_series_model_lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">time_series_model_gb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">time_series_model_rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions with the GAR models</span>
+<span class="n">predictions_lr</span> <span class="o">=</span> <span class="n">time_series_model_lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="n">predictions_gb</span> <span class="o">=</span> <span class="n">time_series_model_gb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="n">predictions_rf</span> <span class="o">=</span> <span class="n">time_series_model_rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the regressors with custom loss function</span>
+<span class="n">time_series_model_max</span> <span class="o">=</span> <span class="n">LinearRegressor</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">max_error</span><span class="p">)</span>
+<span class="n">time_series_model_smape</span> <span class="o">=</span> <span class="n">LinearRegressor</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">smape</span><span class="p">)</span>
+
+<span class="c1"># Train the custom loss models</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">time_series_model_max</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">[</span><span class="s1">&#39;y_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;horizon&#39;</span><span class="p">])],</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
+<span class="n">time_series_model_smape</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">[</span><span class="s1">&#39;y_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;horizon&#39;</span><span class="p">])],</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
+
+<span class="c1"># Make predictions with the custom loss models</span>
+<span class="n">predictions_max</span> <span class="o">=</span> <span class="n">time_series_model_max</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="n">predictions_smape</span> <span class="o">=</span> <span class="n">time_series_model_smape</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+
+<span class="c1"># Bring the results into the correct format</span>
+<span class="n">predictions_max</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">predictions_max</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;y_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;horizon&#39;</span><span class="p">])],</span> <span class="n">index</span><span class="o">=</span><span class="n">X_test</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">predictions_smape</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">predictions_smape</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;y_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;horizon&#39;</span><span class="p">])],</span> <span class="n">index</span><span class="o">=</span><span class="n">X_test</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comparison-of-different-models">
+<h2>Comparison of different models<a class="headerlink" href="#comparison-of-different-models" title="Permalink to this headline">¶</a></h2>
+<p>We can plot the predicted values against the reference values. Note that
+the values plotted here are the values we would expect 21 days later,
+i.e. we plot the predictions and reference values for a 21-days
+forecast.</p>
+<p>Note: You can choose to plot another prediction by setting ‘results =
+… .copy()’ to the predictions of another model.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot predictions vs. reality</span>
+<span class="c1"># Choose the predictions of one of the models trained above</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">predictions_lr</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">plot_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="n">plot_data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;reference&#39;</span><span class="p">]</span>
+
+<span class="n">plot_data</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])])</span>
+
+<span class="n">plot_data</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
+<span class="n">plot_data</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">plot_data</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> days&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;horizon&#39;</span><span class="p">]))</span> <span class="c1">#Shift the data back</span>
+
+<span class="n">plot_data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;reference&#39;</span><span class="p">,</span> <span class="s1">&#39;prediction&#39;</span><span class="p">]</span>
+
+
+<span class="n">plot_pd</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Predictions vs. Reference Values with a 21 days horizon&#39;</span><span class="p">,</span>
+       <span class="n">y_label</span><span class="o">=</span><span class="s1">&#39;mean energy demand per day [MW]&#39;</span><span class="p">,</span>
+       <span class="n">y_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;reference&#39;</span><span class="p">,</span> <span class="s1">&#39;prediction&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<img alt="../../_images/energy_demand_time_series_53_0.png" src="../../_images/energy_demand_time_series_53_0.png" />
+<p>Note that predictions were made for all time steps not only for the ones
+that we have data for in y_test. The score calculated below is the
+relative mean absolute error.</p>
+<p>Some remarks: You can clearly see that the model has learned that on
+Sundays the energy demand is lower than in the rest of the week.
+Furthermore, it follows the yearly trend pretty closely.</p>
+<p>How does this result compare to the baseline model: In order to take the
+seasonality into account, we determine on the training set the ideal
+number of days that we have to look back and use the value there.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_best_shift</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">time_series</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">relative_mean_absolute_error</span><span class="p">):</span>
+    <span class="n">y_preds</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_days</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">y_preds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y_train</span><span class="p">[</span><span class="s1">&#39;y_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])]])</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metric</span><span class="p">(</span><span class="n">y_pred</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y_true</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+
+    <span class="n">y_preds</span><span class="p">[</span><span class="s1">&#39;ref&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="s1">&#39;y_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">y_preds</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">metric</span><span class="o">!=</span><span class="n">r2_score</span><span class="p">:</span>
+        <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">shift</span>
+
+<span class="n">max_days</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">index</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_days</span><span class="p">):</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;day&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">date</span>
+    <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">indices</span><span class="p">))</span>
+    <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_series</span>
+                       <span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">time_series</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])]</span>
+                       <span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                       <span class="o">.</span><span class="n">values</span>
+                       <span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shift_mae</span> <span class="o">=</span> <span class="n">find_best_shift</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">time_series</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">relative_mean_absolute_error</span><span class="p">)</span>
+<span class="n">shift_mse</span> <span class="o">=</span> <span class="n">find_best_shift</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">time_series</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">relative_mean_squared_error</span><span class="p">)</span>
+<span class="n">shift_maxerror</span> <span class="o">=</span> <span class="n">find_best_shift</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">time_series</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">max_error</span><span class="p">)</span>
+<span class="n">shift_smape</span> <span class="o">=</span> <span class="n">find_best_shift</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">time_series</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">smape</span><span class="p">)</span>
+<span class="n">shift_r2</span> <span class="o">=</span> <span class="n">find_best_shift</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">time_series</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">r2_score</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_naive_mae</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y_test</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">shift_mae</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;day&#39;</span><span class="p">)]</span>
+<span class="n">y_naive_mse</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y_test</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">shift_mse</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;day&#39;</span><span class="p">)]</span>
+<span class="n">y_naive_maxerror</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y_test</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">shift_maxerror</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;day&#39;</span><span class="p">)]</span>
+<span class="n">y_naive_smape</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y_test</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">shift_smape</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;day&#39;</span><span class="p">)]</span>
+<span class="n">y_naive_r2</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y_test</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">shift_r2</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;day&#39;</span><span class="p">)]</span>
+
+<span class="n">mae_score</span> <span class="o">=</span> <span class="n">calculate_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span> <span class="n">y_naive_mae</span><span class="p">,</span> <span class="n">relative_mean_absolute_error</span><span class="p">)</span>
+<span class="n">mse_score</span> <span class="o">=</span> <span class="n">calculate_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span> <span class="n">y_naive_mse</span><span class="p">,</span> <span class="n">relative_mean_squared_error</span><span class="p">)</span>
+<span class="n">maxerror_score</span> <span class="o">=</span> <span class="n">calculate_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span> <span class="n">y_naive_maxerror</span><span class="p">,</span> <span class="n">max_error</span><span class="p">)</span>
+<span class="n">smape_score</span> <span class="o">=</span> <span class="n">calculate_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span> <span class="n">y_naive_smape</span><span class="p">,</span> <span class="n">smape</span><span class="p">)</span>
+<span class="n">rsquare_score</span> <span class="o">=</span> <span class="n">calculate_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span> <span class="n">y_naive_r2</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculate_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span> <span class="n">y_naive_mae</span><span class="p">,</span> <span class="n">relative_mean_absolute_error</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.09008899901518862</span>
+</pre></div>
+</div>
+<p>For the GARFF model with linear regression we get the following:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculate_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span>
+                <span class="n">predictions_lr</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span>
+                <span class="n">relative_mean_absolute_error</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.06849262080244989</span>
+</pre></div>
+</div>
+<p>Let’s compare all the models trained above with different metrics. (Top
+results per metric are colored in yellow.)</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rel. mean abs. error&#39;</span><span class="p">,</span> <span class="s1">&#39;rel. mean squared error&#39;</span><span class="p">,</span> <span class="s1">&#39;max. error&#39;</span><span class="p">,</span> <span class="s1">&#39;SMAPE&#39;</span><span class="p">,</span> <span class="s1">&#39;coeff. of determination&#39;</span><span class="p">]</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;baseline&#39;</span><span class="p">,</span> <span class="s1">&#39;GARFF Random Forest&#39;</span><span class="p">,</span> <span class="s1">&#39;GARFF Gradient Boosting&#39;</span><span class="p">,</span> <span class="s1">&#39;GARFF Lin. Reg.&#39;</span><span class="p">,</span> <span class="s1">&#39;Lin. Reg. with max error loss&#39;</span><span class="p">,</span> <span class="s1">&#39;Lin. Reg. with SMAPE loss&#39;</span><span class="p">]</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="p">[</span><span class="n">predictions_rf</span><span class="p">,</span> <span class="n">predictions_gb</span><span class="p">,</span> <span class="n">predictions_lr</span><span class="p">,</span> <span class="n">predictions_max</span><span class="p">,</span> <span class="n">predictions_smape</span><span class="p">]</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">baseline</span> <span class="o">=</span> <span class="p">[</span><span class="n">mae_score</span><span class="p">,</span> <span class="n">mse_score</span><span class="p">,</span> <span class="n">maxerror_score</span><span class="p">,</span> <span class="n">smape_score</span><span class="p">,</span> <span class="n">rsquare_score</span><span class="p">]</span>
+<span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">baseline</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">pred</span> <span class="ow">in</span> <span class="n">predictions</span><span class="p">:</span>
+    <span class="n">scores_model</span> <span class="o">=</span> <span class="p">[</span><span class="n">calculate_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span>
+                                    <span class="n">pred</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span> <span class="n">relative_mean_absolute_error</span><span class="p">),</span>
+                    <span class="n">calculate_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span>
+                                    <span class="n">pred</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span> <span class="n">relative_mean_squared_error</span><span class="p">),</span>
+                    <span class="n">calculate_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span>
+                                    <span class="n">pred</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span> <span class="n">max_error</span><span class="p">),</span>
+                    <span class="n">calculate_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span>
+                                    <span class="n">pred</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span> <span class="n">smape</span><span class="p">),</span>
+                    <span class="n">calculate_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span>
+                                    <span class="n">pred</span><span class="p">[</span><span class="s1">&#39;y_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;test_horizon&#39;</span><span class="p">])],</span> <span class="n">r2_score</span><span class="p">)</span>
+                   <span class="p">]</span>
+    <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scores_model</span><span class="p">)</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">scores</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">models</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">metrics</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">highlight_top</span><span class="p">)</span>
+<span class="n">scores</span>
+</pre></div>
+</div>
+<style  type="text/css" >
+    #T_c3869ba0_aa83_11ea_ad59_8c8590166a14row0_col2 {
+            background-color:  yellow;
+        }    #T_c3869ba0_aa83_11ea_ad59_8c8590166a14row3_col0 {
+            background-color:  yellow;
+        }    #T_c3869ba0_aa83_11ea_ad59_8c8590166a14row3_col1 {
+            background-color:  yellow;
+        }    #T_c3869ba0_aa83_11ea_ad59_8c8590166a14row3_col3 {
+            background-color:  yellow;
+        }    #T_c3869ba0_aa83_11ea_ad59_8c8590166a14row3_col4 {
+            background-color:  yellow;
+        }</style><table id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >rel. mean abs. error</th>        <th class="col_heading level0 col1" >rel. mean squared error</th>        <th class="col_heading level0 col2" >max. error</th>        <th class="col_heading level0 col3" >SMAPE</th>        <th class="col_heading level0 col4" >coeff. of determination</th>    </tr></thead><tbody>
+                <tr>
+                        <th id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14level0_row0" class="row_heading level0 row0" >baseline</th>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row0_col0" class="data row0 col0" >0.090089</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row0_col1" class="data row0 col1" >0.01132</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row0_col2" class="data row0 col2" >466.479</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row0_col3" class="data row0 col3" >0.0868972</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row0_col4" class="data row0 col4" >0.569792</td>
+            </tr>
+            <tr>
+                        <th id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14level0_row1" class="row_heading level0 row1" >GARFF Random Forest</th>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row1_col0" class="data row1 col0" >0.0855422</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row1_col1" class="data row1 col1" >0.0120313</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row1_col2" class="data row1 col2" >1700.79</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row1_col3" class="data row1 col3" >0.083964</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row1_col4" class="data row1 col4" >0.603442</td>
+            </tr>
+            <tr>
+                        <th id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14level0_row2" class="row_heading level0 row2" >GARFF Gradient Boosting</th>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row2_col0" class="data row2 col0" >0.08754</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row2_col1" class="data row2 col1" >0.0125008</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row2_col2" class="data row2 col2" >1381.25</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row2_col3" class="data row2 col3" >0.0842262</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row2_col4" class="data row2 col4" >0.619328</td>
+            </tr>
+            <tr>
+                        <th id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14level0_row3" class="row_heading level0 row3" >GARFF Lin. Reg.</th>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row3_col0" class="data row3 col0" >0.0684926</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row3_col1" class="data row3 col1" >0.00842929</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row3_col2" class="data row3 col2" >1484.84</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row3_col3" class="data row3 col3" >0.065473</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row3_col4" class="data row3 col4" >0.769918</td>
+            </tr>
+            <tr>
+                        <th id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14level0_row4" class="row_heading level0 row4" >Lin. Reg. with max error loss</th>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row4_col0" class="data row4 col0" >0.187018</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row4_col1" class="data row4 col1" >0.0484672</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row4_col2" class="data row4 col2" >2322.84</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row4_col3" class="data row4 col3" >0.213068</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row4_col4" class="data row4 col4" >-0.553378</td>
+            </tr>
+            <tr>
+                        <th id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14level0_row5" class="row_heading level0 row5" >Lin. Reg. with SMAPE loss</th>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row5_col0" class="data row5 col0" >0.0802092</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row5_col1" class="data row5 col1" >0.0108513</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row5_col2" class="data row5 col2" >1484.89</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row5_col3" class="data row5 col3" >0.0774084</td>
+                        <td id="T_c3869ba0_aa83_11ea_ad59_8c8590166a14row5_col4" class="data row5 col4" >0.698311</td>
+            </tr>
+    </tbody></table><p>It turns out that the GARFF model with a linear regression base model
+performs best. It has to be noted that the maximal error very much
+depends on outliers (1st of August 2019 is an outlier visible in the
+plot).</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../api.html" class="btn btn-neutral float-right" title="Welcome to giotto-time’s API reference!" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../advanced.html" class="btn btn-neutral float-left" title="Advanced recepies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, L2F
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

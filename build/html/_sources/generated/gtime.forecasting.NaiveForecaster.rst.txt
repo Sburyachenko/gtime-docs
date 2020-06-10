@@ -1,0 +1,18 @@
+:mod:`gtime.forecasting`.NaiveForecaster
+===============================================
+
+.. currentmodule:: gtime.forecasting
+
+.. autoclass:: NaiveForecaster
+
+   
+   .. automethod:: __init__
+   
+
+..
+   Exclude sphinx-gallery generated examples since we use binder for now
+   include:: gtime.forecasting.NaiveForecaster.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

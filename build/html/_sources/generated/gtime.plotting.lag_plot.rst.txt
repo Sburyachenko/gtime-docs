@@ -1,0 +1,14 @@
+:mod:`gtime.plotting`.lag_plot
+===========================================
+
+.. currentmodule:: gtime.plotting
+
+.. autofunction:: lag_plot
+
+..
+    Exclude sphinx-gallery generated examples since we use binder for now
+    include:: gtime.plotting.lag_plot.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>
