@@ -1,0 +1,749 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hierarchical model, swiss energy demand prediction by canton &mdash; giotto-time 0.2.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> giotto-time
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/about.html">About giotto-time</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about/about.html#releases">Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about/releases.html">Release 0.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about/releases.html#release-0-2-0">Release 0.2.0</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../about/releases.html#import-name-change">Import name change</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../about/releases.html#renaming">Renaming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../about/releases.html#moving">Moving</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../about/releases.html#major-features-and-improvements">Major Features and Improvements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../about/releases.html#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../about/releases.html#release-0-1-2">Release 0.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about/releases.html#release-0-1-1">Release 0.1.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about/releases.html#release-0-1-0">Release 0.1.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/about.html#licenses">Licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/about.html#contributing">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/about.html#links">Links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/about.html#community">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/about.html#contacts">Contacts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#user-installation">User installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#developer-installation">Developer installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#requirements">Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#user-requirements">User requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#developer-requirements">Developer requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#documentation-requirements">Documentation requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basic.html">Basic examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick-start.html">Quick start</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#ingredients">Ingredients</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#data">Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#time-series-preparation">Time Series Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#feature-extraction">Feature extraction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#train-test-split">Train-Test split</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#training">Training</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quick-start.html#forecasting">Forecasting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="simple_models.html">Naïve models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="simple_models.html#initializing-the-time-series">Initializing the time series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_models.html#time-series-preparation">Time Series Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_models.html#naive-model">Naïve model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_models.html#seasonal-naive-model">Seasonal naïve model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_models.html#average-model">Average model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_models.html#drift-model">Drift model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="plotting_example.html">Data analysis with giotto-time plotting tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="plotting_example.html#imports-and-setups">Imports and setups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting_example.html#data-setup">Data setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting_example.html#exploratory-data-analysis">Exploratory data analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced.html">Advanced recepies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="energy_demand_time_series.html">Energy Demand Prediction in Switzerland</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="energy_demand_time_series.html#library-imports">Library Imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="energy_demand_time_series.html#import-data-and-preprocessing">Import Data and Preprocessing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="energy_demand_time_series.html#detrending-and-seasonality">Detrending and Seasonality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="energy_demand_time_series.html#causality-testing">Causality testing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="energy_demand_time_series.html#feature-creation">Feature Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="energy_demand_time_series.html#prediction">Prediction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="energy_demand_time_series.html#comparison-of-different-models">Comparison of different models</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="swiss_energy_hierarchical.html">Hierarchicical model (Swiss energy consumption by canton)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="swiss_energy_hierarchical.html#imports">Imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="swiss_energy_hierarchical.html#data-preparation">Data preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="swiss_energy_hierarchical.html#models">Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.causality">Causality Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.causality.ShiftedLinearCoefficient.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.causality</span></code>.ShiftedLinearCoefficient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.causality.ShiftedPearsonCorrelation.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.causality</span></code>.ShiftedPearsonCorrelation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.causality.GrangerCausality.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.causality</span></code>.GrangerCausality</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.compose">Compose</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.compose.FeatureCreation.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.compose</span></code>.FeatureCreation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.feature_extraction">Feature Extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.Shift.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.MovingAverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.MovingAverage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.MovingCustomFunction.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.MovingCustomFunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.Polynomial.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Polynomial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.Exogenous.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Exogenous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.CustomFeature.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.CustomFeature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.Detrender.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.Detrender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.SortedDensity.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.SortedDensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_extraction.CrestFactorDetrending.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_extraction</span></code>.CrestFactorDetrending</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.feature_generation">Feature Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_generation.PeriodicSeasonal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_generation</span></code>.PeriodicSeasonal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_generation.Constant.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_generation</span></code>.Constant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.feature_generation.Calendar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.feature_generation</span></code>.Calendar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.forecasting">Forecasting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.GAR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.GAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.GARFF.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.GARFF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.MultiFeatureGAR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.MultiFeatureGAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.TrendForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.TrendForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.HedgeForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.HedgeForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.NaiveForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.NaiveForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.SeasonalNaiveForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.SeasonalNaiveForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.DriftForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.DriftForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.AverageForecaster.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.AverageForecaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.forecasting.MultiFeatureMultiOutputRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.forecasting</span></code>.MultiFeatureMultiOutputRegressor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.hierarchical">Hierarchical</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.hierarchical.HierarchicalBase.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.hierarchical.HierarchicalNaive.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalNaive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.hierarchical.HierarchicalBottomUp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalBottomUp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.hierarchical.HierarchicalTopDown.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalTopDown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.hierarchical.HierarchicalMiddleOut.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.hierarchical</span></code>.HierarchicalMiddleOut</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.metrics">Metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.non_zero_smape.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.non_zero_smape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.smape.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.smape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.max_error.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.max_error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.mse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.mse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.log_mse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.log_mse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.r_square.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.r_square</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.mae.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.mae</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.mape.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.mape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.rmse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.rmse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.rmsle.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.rmsle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.metrics.gmae.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.metrics</span></code>.gmae</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.model_selection">Model Selection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.model_selection.FeatureSplitter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.FeatureSplitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.model_selection.horizon_shift.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.horizon_shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.model_selection.time_series_split.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.time_series_split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.model_selection.blocking_time_series_split.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.model_selection</span></code>.blocking_time_series_split</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.plotting">Plotting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.plotting.seasonal_plot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.seasonal_plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.plotting.seasonal_subplots.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.seasonal_subplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.plotting.acf_plot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.acf_plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.plotting.lag_plot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.plotting</span></code>.lag_plot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.preprocessing">Preprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.preprocessing.TimeSeriesPreparation.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.preprocessing</span></code>.TimeSeriesPreparation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.regressors">Regressors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.regressors.LinearRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.regressors</span></code>.LinearRegressor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.regressors.MultiFeatureMultiOutputRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.regressors</span></code>.MultiFeatureMultiOutputRegressor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.regressors.ExplainableRegressor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.regressors</span></code>.ExplainableRegressor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#module-gtime.time_series_models">Time series models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.TimeSeriesForecastingModel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.TimeSeriesForecastingModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.AR.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.AR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.Naive.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.Naive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.SeasonalNaive.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.SeasonalNaive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.Average.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.Average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.Drift.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.Drift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/gtime.time_series_models.CVPipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gtime.time_series_models</span></code>.CVPipeline</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/index.html">Theory Glossary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../theory/index.html#hierarchical-models">Hierarchical models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../theory/index.html#basic-concept">Basic concept</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../theory/index.html#bottom-up-approach">Bottom-up approach</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../theory/index.html#top-down-approach">Top-down approach</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../theory/index.html#middle-out-approach">Middle-out approach</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../theory/index.html#causality">Causality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theory/index.html#explainability">Explainability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theory/index.html#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">giotto-time</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Hierarchical model, swiss energy demand prediction by canton</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/user_guide/notebooks/energy-hierarchical-prepare.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hierarchical-model-swiss-energy-demand-prediction-by-canton">
+<h1>Hierarchical model, swiss energy demand prediction by canton<a class="headerlink" href="#hierarchical-model-swiss-energy-demand-prediction-by-canton" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook we’ll show some ill skills!</p>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">years</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2020</span><span class="p">)</span>
+<span class="n">address</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://www.swissgrid.ch/dam/dataimport/energy-statistic/EnergieUebersichtCH&#39;</span>
+<span class="n">total</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">address</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;-</span><span class="si">{year}</span><span class="s1">.xls&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Zeitreihen0h15&#39;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">total</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2010</span> <span class="mf">0.00011181831359863281</span>
+<span class="mi">2011</span> <span class="mf">40.74275183677673</span>
+<span class="mi">2012</span> <span class="mf">171.2168538570404</span>
+<span class="mi">2013</span> <span class="mf">209.21599078178406</span>
+<span class="mi">2014</span> <span class="mf">247.77192091941833</span>
+<span class="mi">2015</span> <span class="mf">346.4542737007141</span>
+<span class="mi">2016</span> <span class="mf">630.1180539131165</span>
+<span class="mi">2017</span> <span class="mf">923.6870839595795</span>
+<span class="mi">2018</span> <span class="mf">1134.7845287322998</span>
+<span class="mi">2019</span> <span class="mf">1522.175788640976</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">total</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">total_cols</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">):</span>
+    <span class="n">total</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">35136</span><span class="p">,</span> <span class="mi">65</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">total</span><span class="p">[</span><span class="mi">5</span><span class="p">:])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Summe endverbrauchte Energie Regelblock Schweiz\nTotal energy consumed by end users in the Swiss controlblock</th>
+      <th>Summe produzierte Energie Regelblock Schweiz\nTotal energy production Swiss controlblock</th>
+      <th>Summe verbrauchte Energie Regelblock Schweiz\nTotal energy consumption Swiss controlblock</th>
+      <th>Netto Ausspeisung aus dem Übertragungsnetz Schweiz\nNet outflow of the Swiss transmission grid</th>
+      <th>Vertikale Einspeisung ins Übertragungsnetz Schweiz\nGrid feed-in Swiss transmission grid</th>
+      <th>Positive Sekundär-Regelenergie\nPositive secundary control energy</th>
+      <th>Negative Sekundär-Regelenergie\nNegative secundary control energy</th>
+      <th>Positive Tertiär-Regelenergie\nPositive tertiary control energy</th>
+      <th>Negative Tertiär-Regelenergie\nNegative tertiary control energy</th>
+      <th>Verbundaustausch CH-&gt;AT\nCross Border Exchange CH-&gt;AT</th>
+      <th>...</th>
+      <th>Produktion Kantone OW, NW, UR\nProduction Cantons OW, NW, UR</th>
+      <th>Verbrauch Kantone OW, NW, UR\nConsumption Cantons OW, NW, UR</th>
+      <th>Produktion Kantone GE, VD\nProduction Cantons GE, VD</th>
+      <th>Verbrauch Kantone GE, VD\nConsumption Cantons GE, VD</th>
+      <th>Produktion Kantone SH, ZH\nProduction Cantons SH, ZH</th>
+      <th>Verbrauch Kantone SH, ZH\nConsumption Cantons SH, ZH</th>
+      <th>Produktion Kantonsübergreifend\nProduction across Cantons</th>
+      <th>Verbrauch Kantonsübergreifend\nConsumption across Cantons</th>
+      <th>Produktion Regelzone CH - Ausländische Gebiete\nProduction control area CH - foreign territories</th>
+      <th>Verbrauch Regelzone CH - Ausländische Gebiete\nConsumption control area CH - foreign territories</th>
+    </tr>
+    <tr>
+      <th>Unnamed: 0</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-12-31 23:00:00</th>
+      <td>1.60251e+06</td>
+      <td>1.4647e+06</td>
+      <td>1.71125e+06</td>
+      <td>208423</td>
+      <td>1.01108e+06</td>
+      <td>12453</td>
+      <td>-33</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>11004.6</td>
+      <td>30087.6</td>
+      <td>69882.4</td>
+      <td>202726</td>
+      <td>22114.2</td>
+      <td>272619</td>
+      <td>100247</td>
+      <td>44299.5</td>
+      <td>277.2</td>
+      <td>4749.9</td>
+    </tr>
+    <tr>
+      <th>2019-12-31 23:15:00</th>
+      <td>1.63514e+06</td>
+      <td>1.42671e+06</td>
+      <td>1.74402e+06</td>
+      <td>279965</td>
+      <td>992736</td>
+      <td>1792</td>
+      <td>-258</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>12801.3</td>
+      <td>30466.4</td>
+      <td>67705.9</td>
+      <td>200968</td>
+      <td>22155.5</td>
+      <td>272713</td>
+      <td>98315.5</td>
+      <td>41126.9</td>
+      <td>274.15</td>
+      <td>4725.67</td>
+    </tr>
+    <tr>
+      <th>2019-12-31 23:30:00</th>
+      <td>1.61962e+06</td>
+      <td>1.40861e+06</td>
+      <td>1.72849e+06</td>
+      <td>282102</td>
+      <td>981917</td>
+      <td>352</td>
+      <td>-581</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>14400.6</td>
+      <td>30654</td>
+      <td>65973.2</td>
+      <td>197808</td>
+      <td>21944.1</td>
+      <td>266851</td>
+      <td>98579.6</td>
+      <td>42353.2</td>
+      <td>266.25</td>
+      <td>4737.8</td>
+    </tr>
+    <tr>
+      <th>2019-12-31 23:45:00</th>
+      <td>1.60629e+06</td>
+      <td>1.41915e+06</td>
+      <td>1.71514e+06</td>
+      <td>255598</td>
+      <td>997298</td>
+      <td>21069</td>
+      <td>-73</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>14632.6</td>
+      <td>31417.1</td>
+      <td>63394.5</td>
+      <td>194344</td>
+      <td>22597.2</td>
+      <td>260677</td>
+      <td>97212.4</td>
+      <td>42221.9</td>
+      <td>278.15</td>
+      <td>4650.03</td>
+    </tr>
+    <tr>
+      <th>2020-01-01 00:00:00</th>
+      <td>1.59187e+06</td>
+      <td>1.39405e+06</td>
+      <td>1.70859e+06</td>
+      <td>268154</td>
+      <td>983859</td>
+      <td>15318</td>
+      <td>-599</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>13949.2</td>
+      <td>31061.4</td>
+      <td>61012.5</td>
+      <td>191194</td>
+      <td>22856.7</td>
+      <td>262387</td>
+      <td>97756.2</td>
+      <td>46944.1</td>
+      <td>272.184</td>
+      <td>4669.48</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 64 columns</p>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">140256</span><span class="p">,</span> <span class="mi">65</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;1W&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="mf">1e6</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w</span> <span class="o">=</span> <span class="n">df_w</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="n">df_w</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df_w</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cons_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;onsu&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">,</span> <span class="n">df_m</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">prod_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;rodu&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">,</span> <span class="n">df_m</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cons_cols</span>
+</pre></div>
+</div>
+<pre class="literal-block">['Summe endverbrauchte Energie Regelblock SchweiznTotal energy consumed by end users in the Swiss controlblock',
+ 'Summe verbrauchte Energie Regelblock SchweiznTotal energy consumption Swiss controlblock',
+ 'Verbrauch Kanton AGnConsumption Canton AG',
+ 'Verbrauch Kanton FRnConsumption Canton FR',
+ 'Verbrauch Kanton GLnConsumption Canton GL',
+ 'Verbrauch Kanton GRnConsumption Canton GR',
+ 'Verbrauch Kanton LUnConsumption Canton LU',
+ 'Verbrauch Kanton NEnConsumption Canton NE',
+ 'Verbrauch Kanton SOnConsumption Canton SO',
+ 'Verbrauch Kanton SGnConsumption Canton SG',
+ 'Verbrauch Kanton TInConsumption Canton TI',
+ 'Verbrauch Kanton TGnConsumption Canton TG',
+ 'Verbrauch Kanton VSnConsumption Canton VS',
+ 'Verbrauch Kantone AI, ARnConsumption Cantons AI, AR',
+ 'Verbrauch Kantone BL, BSnConsumption Cantons BL, BS',
+ 'Verbrauch Kantone BE, JUnConsumption Cantons BE, JU',
+ 'Verbrauch Kantone SZ, ZGnConsumption Cantons SZ, ZG',
+ 'Verbrauch Kantone OW, NW, URnConsumption Cantons OW, NW, UR',
+ 'Verbrauch Kantone GE, VDnConsumption Cantons GE, VD',
+ 'Verbrauch Kantone SH, ZHnConsumption Cantons SH, ZH',
+ 'Verbrauch KantonsübergreifendnConsumption across Cantons',
+ 'Verbrauch Regelzone CH - Ausländische GebietenConsumption control area CH - foreign territories']</pre>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_m</span><span class="p">[</span><span class="n">cons_cols</span><span class="p">]</span><span class="o">.</span><span class="n">to_clipboard</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w</span><span class="p">[</span><span class="n">cons_cols</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+<pre class="literal-block">Unnamed: 0
+2016-01-03    1357.998552
+2016-01-10    1419.279656
+2016-01-17    1434.221040
+2016-01-24    1336.828374
+2016-01-31    1310.749467
+                 ...
+2019-11-24    1356.190601
+2019-12-01    1378.442809
+2019-12-08    1374.469077
+2019-12-15    1315.433631
+2019-12-22    1190.147042
+Name: Summe verbrauchte Energie Regelblock SchweiznTotal energy consumption Swiss controlblock, Length: 208, dtype: float64</pre>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">df_w</span><span class="p">[</span><span class="n">cons_cols</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">df_w</span><span class="p">[</span><span class="n">cons_cols</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fc4e179cef0</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/energy-hierarchical-prepare_20_1.png" src="../../_images/energy-hierarchical-prepare_20_1.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w</span><span class="p">[</span><span class="n">cons_cols</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">df_w</span><span class="p">[</span><span class="n">cons_cols</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x7fc4e27db240</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/energy-hierarchical-prepare_21_1.png" src="../../_images/energy-hierarchical-prepare_21_1.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cons_w</span> <span class="o">=</span> <span class="n">df_w</span><span class="p">[</span><span class="n">cons_cols</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cons_w</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">cons_cols</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">3.7</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">frame</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">4097</span><span class="p">:</span> <span class="n">SettingWithCopyWarning</span><span class="p">:</span>
+<span class="n">A</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">trying</span> <span class="n">to</span> <span class="n">be</span> <span class="nb">set</span> <span class="n">on</span> <span class="n">a</span> <span class="n">copy</span> <span class="n">of</span> <span class="n">a</span> <span class="nb">slice</span> <span class="kn">from</span> <span class="nn">a</span> <span class="n">DataFrame</span>
+
+<span class="n">See</span> <span class="n">the</span> <span class="n">caveats</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">documentation</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">pandas</span><span class="o">.</span><span class="n">pydata</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pandas</span><span class="o">-</span><span class="n">docs</span><span class="o">/</span><span class="n">stable</span><span class="o">/</span><span class="n">user_guide</span><span class="o">/</span><span class="n">indexing</span><span class="o">.</span><span class="n">html</span><span class="c1">#returning-a-view-versus-a-copy</span>
+  <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cons_w</span> <span class="o">=</span> <span class="n">df_cons_w</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">cons_cols</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="s1">&#39;Total&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="n">new_col_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;.*\nConsumption (.*)&#39;</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">groups</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cons_cols</span><span class="p">[</span><span class="mi">2</span><span class="p">:]]</span>
+<span class="n">df_cons_w</span> <span class="o">=</span> <span class="n">df_cons_w</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">cons_cols</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="n">new_col_names</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cons_w</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df_cons_w</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_period</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cons_w</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;weekly_canton_cons.dat&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, L2F
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,456 @@
+Hierarchical model, swiss energy demand prediction by canton
+============================================================
+
+In this notebook we'll show some ill skills!
+
+Imports
+-------
+
+.. code:: ipython3
+
+    import sys
+    sys.path.append('../')
+    
+    import pandas as pd
+    import time
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline 
+
+Data
+----
+
+.. code:: ipython3
+
+    years = range(2010, 2020)
+    address = f'https://www.swissgrid.ch/dam/dataimport/energy-statistic/EnergieUebersichtCH'
+    total = []
+    
+    start = time.time()
+    
+    for year in years:
+        try:
+            print(year, time.time() - start)
+            df = pd.read_excel(address + f'-{year}.xls', sheet_name='Zeitreihen0h15')
+            df = df.drop(0)
+            total.append(df)
+        except:
+            pass
+
+
+.. parsed-literal::
+
+    2010 0.00011181831359863281
+    2011 40.74275183677673
+    2012 171.2168538570404
+    2013 209.21599078178406
+    2014 247.77192091941833
+    2015 346.4542737007141
+    2016 630.1180539131165
+    2017 923.6870839595795
+    2018 1134.7845287322998
+    2019 1522.175788640976
+
+
+.. code:: ipython3
+
+    total_cols = [df.columns for df in total]
+
+.. code:: ipython3
+
+    [len(x) for x in total_cols]
+
+
+
+
+.. parsed-literal::
+
+    [21, 21, 21, 21, 25, 65, 65, 65, 65]
+
+
+
+.. code:: ipython3
+
+    for i in range(5, 9):
+        total[i]['']
+
+
+
+
+.. parsed-literal::
+
+    (35136, 65)
+
+
+
+.. code:: ipython3
+
+    df = pd.concat(total[5:])
+
+.. code:: ipython3
+
+    df.iloc[-5:]
+
+
+
+
+.. raw:: html
+
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>Summe endverbrauchte Energie Regelblock Schweiz\nTotal energy consumed by end users in the Swiss controlblock</th>
+          <th>Summe produzierte Energie Regelblock Schweiz\nTotal energy production Swiss controlblock</th>
+          <th>Summe verbrauchte Energie Regelblock Schweiz\nTotal energy consumption Swiss controlblock</th>
+          <th>Netto Ausspeisung aus dem Übertragungsnetz Schweiz\nNet outflow of the Swiss transmission grid</th>
+          <th>Vertikale Einspeisung ins Übertragungsnetz Schweiz\nGrid feed-in Swiss transmission grid</th>
+          <th>Positive Sekundär-Regelenergie\nPositive secundary control energy</th>
+          <th>Negative Sekundär-Regelenergie\nNegative secundary control energy</th>
+          <th>Positive Tertiär-Regelenergie\nPositive tertiary control energy</th>
+          <th>Negative Tertiär-Regelenergie\nNegative tertiary control energy</th>
+          <th>Verbundaustausch CH-&gt;AT\nCross Border Exchange CH-&gt;AT</th>
+          <th>...</th>
+          <th>Produktion Kantone OW, NW, UR\nProduction Cantons OW, NW, UR</th>
+          <th>Verbrauch Kantone OW, NW, UR\nConsumption Cantons OW, NW, UR</th>
+          <th>Produktion Kantone GE, VD\nProduction Cantons GE, VD</th>
+          <th>Verbrauch Kantone GE, VD\nConsumption Cantons GE, VD</th>
+          <th>Produktion Kantone SH, ZH\nProduction Cantons SH, ZH</th>
+          <th>Verbrauch Kantone SH, ZH\nConsumption Cantons SH, ZH</th>
+          <th>Produktion Kantonsübergreifend\nProduction across Cantons</th>
+          <th>Verbrauch Kantonsübergreifend\nConsumption across Cantons</th>
+          <th>Produktion Regelzone CH - Ausländische Gebiete\nProduction control area CH - foreign territories</th>
+          <th>Verbrauch Regelzone CH - Ausländische Gebiete\nConsumption control area CH - foreign territories</th>
+        </tr>
+        <tr>
+          <th>Unnamed: 0</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>2019-12-31 23:00:00</th>
+          <td>1.60251e+06</td>
+          <td>1.4647e+06</td>
+          <td>1.71125e+06</td>
+          <td>208423</td>
+          <td>1.01108e+06</td>
+          <td>12453</td>
+          <td>-33</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>...</td>
+          <td>11004.6</td>
+          <td>30087.6</td>
+          <td>69882.4</td>
+          <td>202726</td>
+          <td>22114.2</td>
+          <td>272619</td>
+          <td>100247</td>
+          <td>44299.5</td>
+          <td>277.2</td>
+          <td>4749.9</td>
+        </tr>
+        <tr>
+          <th>2019-12-31 23:15:00</th>
+          <td>1.63514e+06</td>
+          <td>1.42671e+06</td>
+          <td>1.74402e+06</td>
+          <td>279965</td>
+          <td>992736</td>
+          <td>1792</td>
+          <td>-258</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>...</td>
+          <td>12801.3</td>
+          <td>30466.4</td>
+          <td>67705.9</td>
+          <td>200968</td>
+          <td>22155.5</td>
+          <td>272713</td>
+          <td>98315.5</td>
+          <td>41126.9</td>
+          <td>274.15</td>
+          <td>4725.67</td>
+        </tr>
+        <tr>
+          <th>2019-12-31 23:30:00</th>
+          <td>1.61962e+06</td>
+          <td>1.40861e+06</td>
+          <td>1.72849e+06</td>
+          <td>282102</td>
+          <td>981917</td>
+          <td>352</td>
+          <td>-581</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>...</td>
+          <td>14400.6</td>
+          <td>30654</td>
+          <td>65973.2</td>
+          <td>197808</td>
+          <td>21944.1</td>
+          <td>266851</td>
+          <td>98579.6</td>
+          <td>42353.2</td>
+          <td>266.25</td>
+          <td>4737.8</td>
+        </tr>
+        <tr>
+          <th>2019-12-31 23:45:00</th>
+          <td>1.60629e+06</td>
+          <td>1.41915e+06</td>
+          <td>1.71514e+06</td>
+          <td>255598</td>
+          <td>997298</td>
+          <td>21069</td>
+          <td>-73</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>...</td>
+          <td>14632.6</td>
+          <td>31417.1</td>
+          <td>63394.5</td>
+          <td>194344</td>
+          <td>22597.2</td>
+          <td>260677</td>
+          <td>97212.4</td>
+          <td>42221.9</td>
+          <td>278.15</td>
+          <td>4650.03</td>
+        </tr>
+        <tr>
+          <th>2020-01-01 00:00:00</th>
+          <td>1.59187e+06</td>
+          <td>1.39405e+06</td>
+          <td>1.70859e+06</td>
+          <td>268154</td>
+          <td>983859</td>
+          <td>15318</td>
+          <td>-599</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>...</td>
+          <td>13949.2</td>
+          <td>31061.4</td>
+          <td>61012.5</td>
+          <td>191194</td>
+          <td>22856.7</td>
+          <td>262387</td>
+          <td>97756.2</td>
+          <td>46944.1</td>
+          <td>272.184</td>
+          <td>4669.48</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>5 rows × 64 columns</p>
+    </div>
+
+
+
+.. code:: ipython3
+
+    df.shape
+
+
+
+
+.. parsed-literal::
+
+    (140256, 65)
+
+
+
+.. code:: ipython3
+
+    df = df.set_index('Unnamed: 0')
+
+.. code:: ipython3
+
+    df_w = df.resample('1W', label='left').sum() / 1e6
+
+
+.. code:: ipython3
+
+    df_w = df_w.drop([df_w.index[0], df_w.index[-1]])
+
+.. code:: ipython3
+
+    cons_cols = list(filter(lambda x: 'onsu' in x, df_m.columns))
+    prod_cols = list(filter(lambda x: 'rodu' in x, df_m.columns))
+
+.. code:: ipython3
+
+    cons_cols
+
+
+
+
+.. parsed-literal::
+
+    ['Summe endverbrauchte Energie Regelblock Schweiz\nTotal energy consumed by end users in the Swiss controlblock',
+     'Summe verbrauchte Energie Regelblock Schweiz\nTotal energy consumption Swiss controlblock',
+     'Verbrauch Kanton AG\nConsumption Canton AG',
+     'Verbrauch Kanton FR\nConsumption Canton FR',
+     'Verbrauch Kanton GL\nConsumption Canton GL',
+     'Verbrauch Kanton GR\nConsumption Canton GR',
+     'Verbrauch Kanton LU\nConsumption Canton LU',
+     'Verbrauch Kanton NE\nConsumption Canton NE',
+     'Verbrauch Kanton SO\nConsumption Canton SO',
+     'Verbrauch Kanton SG\nConsumption Canton SG',
+     'Verbrauch Kanton TI\nConsumption Canton TI',
+     'Verbrauch Kanton TG\nConsumption Canton TG',
+     'Verbrauch Kanton VS\nConsumption Canton VS',
+     'Verbrauch Kantone AI, AR\nConsumption Cantons AI, AR',
+     'Verbrauch Kantone BL, BS\nConsumption Cantons BL, BS',
+     'Verbrauch Kantone BE, JU\nConsumption Cantons BE, JU',
+     'Verbrauch Kantone SZ, ZG\nConsumption Cantons SZ, ZG',
+     'Verbrauch Kantone OW, NW, UR\nConsumption Cantons OW, NW, UR',
+     'Verbrauch Kantone GE, VD\nConsumption Cantons GE, VD',
+     'Verbrauch Kantone SH, ZH\nConsumption Cantons SH, ZH',
+     'Verbrauch Kantonsübergreifend\nConsumption across Cantons',
+     'Verbrauch Regelzone CH - Ausländische Gebiete\nConsumption control area CH - foreign territories']
+
+
+
+.. code:: ipython3
+
+    df_m[cons_cols].to_clipboard()
+
+.. code:: ipython3
+
+    df_w[cons_cols[1]]
+
+
+
+
+.. parsed-literal::
+
+    Unnamed: 0
+    2016-01-03    1357.998552
+    2016-01-10    1419.279656
+    2016-01-17    1434.221040
+    2016-01-24    1336.828374
+    2016-01-31    1310.749467
+                     ...     
+    2019-11-24    1356.190601
+    2019-12-01    1378.442809
+    2019-12-08    1374.469077
+    2019-12-15    1315.433631
+    2019-12-22    1190.147042
+    Name: Summe verbrauchte Energie Regelblock Schweiz\nTotal energy consumption Swiss controlblock, Length: 208, dtype: float64
+
+
+
+.. code:: ipython3
+
+    (df_w[cons_cols].iloc[:, 2:].sum(axis=1) - df_w[cons_cols[1]]).plot()
+
+
+
+
+.. parsed-literal::
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fc4e179cef0>
+
+
+
+
+.. image:: energy-hierarchical-prepare_files/energy-hierarchical-prepare_20_1.png
+
+
+.. code:: ipython3
+
+    df_w[cons_cols].iloc[:, 2:].sum(axis=1).plot()
+    df_w[cons_cols[1]].plot()
+
+
+
+
+.. parsed-literal::
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fc4e27db240>
+
+
+
+
+.. image:: energy-hierarchical-prepare_files/energy-hierarchical-prepare_21_1.png
+
+
+.. code:: ipython3
+
+    df_cons_w = df_w[cons_cols]
+
+.. code:: ipython3
+
+    df_cons_w.drop(cons_cols[1], axis=1, inplace=True)
+
+
+.. parsed-literal::
+
+    /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pandas/core/frame.py:4097: SettingWithCopyWarning: 
+    A value is trying to be set on a copy of a slice from a DataFrame
+    
+    See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+      errors=errors,
+
+
+.. code:: ipython3
+
+    df_cons_w = df_cons_w.rename(columns={cons_cols[0]: 'Total'})
+
+.. code:: ipython3
+
+    import re
+    new_col_names = [re.match(r'.*\nConsumption (.*)', col).groups()[0] for col in cons_cols[2:]]
+    df_cons_w = df_cons_w.rename(columns=dict(zip(cons_cols[2:], new_col_names)))
+
+.. code:: ipython3
+
+    df_cons_w.index = df_cons_w.index.to_period()
+
+.. code:: ipython3
+
+    df_cons_w.to_pickle('weekly_canton_cons.dat')
+

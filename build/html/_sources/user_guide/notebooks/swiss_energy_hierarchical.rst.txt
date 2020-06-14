@@ -1,0 +1,339 @@
+Hierarchicical model (Swiss energy consumption by canton)
+=========================================================
+
+This example shows how hierarchical modeling can be done with
+``giotto-time``. We will analyse breaking down Swiss energy consumption
+to canton level and modeling both total figures and its parts.
+
+Imports
+-------
+
+.. code:: ipython3
+
+    import sys
+    sys.path.append('../')
+    
+    import pandas as pd
+    import time
+    import numpy as np
+    import networkx as nx
+    import matplotlib.pyplot as plt
+    
+    
+    from gtime.hierarchical import HierarchicalBottomUp, HierarchicalTopDown
+    from gtime.time_series_models import AR
+    
+    # Display settings
+    pd.options.display.float_format = '{:20.2f}'.format
+    pd.set_option('display.max_columns', 10)
+    import warnings
+    warnings.simplefilter("ignore", UserWarning)
+    %matplotlib inline 
+
+Data preparation
+----------------
+
+To focus on the modeling part, we will use pre-processed weekly data of
+electricity consumption (in MWh) that can be loaded into a DataFrame.
+
+.. code:: ipython3
+
+    df = pd.read_pickle('weekly_canton_cons.dat')
+    df.head()
+
+
+
+
+.. raw:: html
+
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>Total</th>
+          <th>Canton AG</th>
+          <th>Canton FR</th>
+          <th>Canton GL</th>
+          <th>Canton GR</th>
+          <th>...</th>
+          <th>Cantons OW, NW, UR</th>
+          <th>Cantons GE, VD</th>
+          <th>Cantons SH, ZH</th>
+          <th>Across cantons</th>
+          <th>Foreign territories</th>
+        </tr>
+        <tr>
+          <th>Unnamed: 0</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>2015-12-28/2016-01-03</th>
+          <td>1224.85</td>
+          <td>100.49</td>
+          <td>56.29</td>
+          <td>18.72</td>
+          <td>57.61</td>
+          <td>...</td>
+          <td>18.92</td>
+          <td>159.71</td>
+          <td>200.14</td>
+          <td>52.10</td>
+          <td>11.45</td>
+        </tr>
+        <tr>
+          <th>2016-01-04/2016-01-10</th>
+          <td>1295.29</td>
+          <td>108.15</td>
+          <td>60.07</td>
+          <td>17.34</td>
+          <td>56.46</td>
+          <td>...</td>
+          <td>20.50</td>
+          <td>165.68</td>
+          <td>209.02</td>
+          <td>57.59</td>
+          <td>13.60</td>
+        </tr>
+        <tr>
+          <th>2016-01-11/2016-01-17</th>
+          <td>1325.07</td>
+          <td>112.70</td>
+          <td>61.57</td>
+          <td>13.59</td>
+          <td>56.96</td>
+          <td>...</td>
+          <td>21.57</td>
+          <td>161.12</td>
+          <td>212.94</td>
+          <td>52.33</td>
+          <td>13.99</td>
+        </tr>
+        <tr>
+          <th>2016-01-18/2016-01-24</th>
+          <td>1221.54</td>
+          <td>102.57</td>
+          <td>56.09</td>
+          <td>15.84</td>
+          <td>51.43</td>
+          <td>...</td>
+          <td>19.16</td>
+          <td>153.80</td>
+          <td>198.41</td>
+          <td>51.33</td>
+          <td>13.10</td>
+        </tr>
+        <tr>
+          <th>2016-01-25/2016-01-31</th>
+          <td>1205.66</td>
+          <td>100.94</td>
+          <td>56.14</td>
+          <td>12.69</td>
+          <td>51.16</td>
+          <td>...</td>
+          <td>18.62</td>
+          <td>156.07</td>
+          <td>197.99</td>
+          <td>43.27</td>
+          <td>12.32</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>5 rows × 21 columns</p>
+    </div>
+
+
+
+We may notice that total consumption elev is slightly less that the sum
+of its parts:
+
+.. code:: ipython3
+
+    (df['Total'] - df.iloc[:, 1:].sum(axis=1)).plot();
+    sum_diff_mean = (df['Total'] - df.iloc[:, 1:].sum(axis=1)).mean()
+
+
+
+.. image:: swiss_energy_hierarchical_files/swiss_energy_hierarchical_8_0.png
+
+
+Models
+------
+
+Bottom-up model
+~~~~~~~~~~~~~~~
+
+Bottom-up approach starts with modeling subgroups separately and then
+aggregating the totals. To use it we need to convert our dataframe into
+a dictionary of time series. By default, if data hierarchy tree is not
+specified, it is assumed that the first item is a sum of all the
+remaining, which would be exactly our case.
+
+.. code:: ipython3
+
+    data = {'Total':df[['Total']]}
+    for col in df.columns[1:]:
+        data[col] = df[[col]]
+
+Next we specify our model parameters. Expecting annual seasonality, we
+will try a 52-week AR model. The pipeline will automatically split each
+time series to train and test data.
+
+.. code:: ipython3
+
+    horizon = 52
+    time_series_model = AR(p=horizon, horizon=horizon)
+    model = HierarchicalBottomUp(time_series_model)
+    df_test = df.iloc[-horizon+1:]
+
+Now we can fit the model and calculate the predictions to compare them
+with actual figures for 2019.
+
+.. code:: ipython3
+
+    model.fit(data)
+    y_pred_dict = model.predict()
+
+
+.. parsed-literal::
+
+    AR(explainer_type=None, horizon=52, p=52)
+
+
+And assemble the predictions back into a single dataframe.
+
+.. code:: ipython3
+
+    df_pred = pd.DataFrame(np.nan, index=df_test.index, columns=df_test.columns)
+    for key, value in y_pred_dict.items():
+        df_pred[key] = value.iloc[:-1, 0].values
+
+And compare predicted total comsumption in 2019 with actual values
+keeping in mind the average difference between the total figure and sum
+of its subcomponents. We see that the prediction follows the seasonal
+pattern well.
+
+.. code:: ipython3
+
+    df_test['Total'].plot()
+    axes = (df_pred['Total'] + sum_diff_mean).plot(figsize=(15, 5), title='Total consumption')
+    axes.set_xlabel(None);
+    axes.legend(['Actual', 'Predicted'], loc='lower center');
+
+
+
+.. image:: swiss_energy_hierarchical_files/swiss_energy_hierarchical_20_0.png
+
+
+While for some of its parts the predictions might be more volatile and
+less accurate.
+
+.. code:: ipython3
+
+    fig, ax = plt.subplots(nrows=5, ncols=4, figsize=(16, 20), constrained_layout=True)
+    
+    for i, col in enumerate(pred_df.columns[1:]):
+        axes = ax[i // 4, i % 4]
+        df_test[col].plot(ax=axes, legend=False);
+        pred_df[col].plot(ax=axes, legend=False, title=col);
+        axes.set_xlabel(None)
+    fig.legend(['Actual', 'Predicted'], loc='lower center');
+
+
+
+.. image:: swiss_energy_hierarchical_files/swiss_energy_hierarchical_22_0.png
+
+
+Top-down model
+~~~~~~~~~~~~~~
+
+Alternatively we can use a top-down approach where average ratios of
+subseries to total amount are calculated and then the forecast is split
+proportionally. The data and model parameters here are the same.
+
+.. code:: ipython3
+
+    data = {'Total':df[['Total']].rename({'Total':'ts'}, axis=1)}
+    for col in df.columns[1:]:
+        data[col] = df[[col]].rename({col:'ts'}, axis=1)
+    horizon = 52
+    time_series_model = AR(p=horizon, horizon=horizon)
+    model = HierarchicalTopDown(time_series_model, method='tdfp')
+
+.. code:: ipython3
+
+    model.fit(data)
+    y_pred_dict = model.predict()
+
+
+.. parsed-literal::
+
+    AR(explainer_type=None, horizon=52, p=52)
+
+
+.. code:: ipython3
+
+    df_pred = pd.DataFrame(np.nan, index=df_test.index, columns=df_test.columns)
+    for key, value in y_pred_dict.items():
+        df_pred[key] = value.iloc[:-1, 0].values
+
+In this case there is no need to adjust for the difference between the
+total and the sum its components.
+
+.. code:: ipython3
+
+    df_test['Total'].plot()
+    axes = df_pred['Total'].plot(figsize=(15, 5), title='Total consumption')
+    axes.set_xlabel(None);
+    axes.legend(['Actual', 'Predicted'], loc='lower center');
+
+
+
+.. image:: swiss_energy_hierarchical_files/swiss_energy_hierarchical_29_0.png
+
+
+But while the forecast of the total figure looks close to actual data
+can catches its seasonal patterns, the forecasts for the parts simply
+resemble the shape of the total and thus often significantly differ from
+the actual figures.
+
+.. code:: ipython3
+
+    fig, ax = plt.subplots(nrows=5, ncols=4, figsize=(16, 20), constrained_layout=True)
+    for i, col in enumerate(df_pred.columns[1:]):
+        axes = ax[i // 4, i % 4]
+        df_test[col].plot(ax=axes, legend=False);
+        df_pred[col].plot(ax=axes, legend=False, title=col);
+        axes.set_xlabel(None)
+    fig.legend(['Actual', 'Predicted'], loc='lower center');
+
+
+
+.. image:: swiss_energy_hierarchical_files/swiss_energy_hierarchical_31_0.png
+
+

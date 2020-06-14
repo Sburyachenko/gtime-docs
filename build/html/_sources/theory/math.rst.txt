@@ -6,11 +6,27 @@ Theory Glossary
    :depth: 3
 ..
 
-Symbols
-=======
+Hierarchical models
+===================
 
-Naïve model
-===========
+Basic concept
+-------------
+
+In many pracrical applications a there exists some hierarchical
+relationship between time series. Most commonly, a time series can be
+represented as a sum of its components which represent a split location,
+type or categories. It can bet illustrated with a tree:
+
+(Hyndman, Athanasopoulos, and OTexts.com 2014)
+
+Bottom-up approach
+------------------
+
+Top-down approach
+-----------------
+
+Middle-out approach
+-------------------
 
 Causality
 =========
@@ -18,11 +34,25 @@ Causality
 Explainability
 ==============
 
-Generalized linear models
-=========================
-
-Hierarchical models
-===================
-
 Bibliography
 ============
+
+.. raw:: html
+
+   <div id="refs" class="references">
+
+.. raw:: html
+
+   <div id="ref-nla.cat-vn6450419">
+
+Hyndman, Rob J., Athanasopoulos George, and OTexts.com. 2014.
+*Forecasting : Principles and Practice / Rob J Hyndman and George
+Athanasopoulos*. Book. Print edition. OTexts.com [Heathmont?, Victoria].
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>

@@ -25,6 +25,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -36,7 +37,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="gtime.causality.ShiftedLinearCoefficient" href="generated/gtime.causality.ShiftedLinearCoefficient.html" />
-    <link rel="prev" title="Energy Demand Prediction in Switzerland" href="user_guide/notebooks/energy_demand_time_series.html" /> 
+    <link rel="prev" title="Hierarchicical model (Swiss energy consumption by canton)" href="user_guide/notebooks/swiss_energy_hierarchical.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -155,6 +156,12 @@
 <li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/energy_demand_time_series.html#comparison-of-different-models">Comparison of different models</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/notebooks/swiss_energy_hierarchical.html">Hierarchicical model (Swiss energy consumption by canton)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/swiss_energy_hierarchical.html#imports">Imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/swiss_energy_hierarchical.html#data-preparation">Data preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/notebooks/swiss_energy_hierarchical.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -259,14 +266,17 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="theory/math.html">Theory Glossary</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="theory/math.html#symbols">Symbols</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory/math.html#naive-model">Naïve model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory/math.html#causality">Causality</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory/math.html#explainability">Explainability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory/math.html#generalized-linear-models">Generalized linear models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory/math.html#hierarchical-models">Hierarchical models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory/math.html#bibliography">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/index.html">Theory Glossary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="theory/index.html#hierarchical-models">Hierarchical models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="theory/index.html#basic-concept">Basic concept</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory/index.html#bottom-up-approach">Bottom-up approach</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory/index.html#top-down-approach">Top-down approach</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory/index.html#middle-out-approach">Middle-out approach</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="theory/index.html#causality">Causality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory/index.html#explainability">Explainability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory/index.html#bibliography">Bibliography</a></li>
 </ul>
 </li>
 </ul>
@@ -688,7 +698,7 @@ data.</p>
         <a href="generated/gtime.causality.ShiftedLinearCoefficient.html" class="btn btn-neutral float-right" title="gtime.causality.ShiftedLinearCoefficient" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="user_guide/notebooks/energy_demand_time_series.html" class="btn btn-neutral float-left" title="Energy Demand Prediction in Switzerland" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="user_guide/notebooks/swiss_energy_hierarchical.html" class="btn btn-neutral float-left" title="Hierarchicical model (Swiss energy consumption by canton)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
